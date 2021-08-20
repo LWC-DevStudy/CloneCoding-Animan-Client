@@ -33,11 +33,11 @@ export const flexVer = (sort = 'center') => {
 
 const theme = {
   palette: {
-    black: '#3C3733',
-    brown: '#5B4C3D',
-    buttonColor: '#06581E',
-    footerColor:'#004815',
-    gray: '#3C3733B3',
+    black: '60, 55, 51',
+    brown: '91, 76, 61',
+    buttonColor: '6, 88, 30',
+    footerColor: '0, 72, 21',
+    gray: '114, 114, 114',
     white: '255, 255, 255',
   },
 
