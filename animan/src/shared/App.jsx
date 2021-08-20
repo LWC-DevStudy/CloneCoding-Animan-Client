@@ -1,6 +1,10 @@
 // LIBRARY
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+
+// STYLE
+import theme from '../shared/style';
 
 // PAGES
 import Main from '../pages/Main';
@@ -20,7 +24,7 @@ import ProductDetail from '../pages/ProductDetail';
 
 function App() {
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <Route path='/' exact component={Main} />
       <Route path='/login' exact component={Login} />
       <Route path='/register' exact component={Register} />
@@ -31,7 +35,7 @@ function App() {
       <Route path='/rdetail' exact component={ReviewDetail} />
       <Route path='/wrtie' exact component={ReviewWrite} />
       <Route path='/pdetail' exact component={ProductDetail} />
-    </React.Fragment>
+    </ThemeProvider>
   );
 }
 
