@@ -37,6 +37,7 @@ const theme = {
     brown: '91, 76, 61',
     buttonColor: '6, 88, 30',
     footerColor: '0, 72, 21',
+    green: '9, 120, 9',
     gray: '114, 114, 114',
     white: '255, 255, 255',
   },
