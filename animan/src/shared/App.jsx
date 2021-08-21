@@ -10,6 +10,7 @@ import theme from '../shared/style';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import RegisterSelect from '../pages/RegisterSelect';
 import Shop from '../pages/Shop';
 import Cart from '../pages/Cart';
 import WishList from '../pages/WishList';
@@ -28,6 +29,7 @@ function App() {
       <Route path='/' exact component={Main} />
       <Route path='/login' exact component={Login} />
       <Route path='/register' exact component={Register} />
+      <Route path='/registerselect' exact component={RegisterSelect} />
       <Route path='/shop' exact component={Shop} />
       <Route path='/cart' exact component={Cart} />
       <Route path='/wishList' exact component={WishList} />
