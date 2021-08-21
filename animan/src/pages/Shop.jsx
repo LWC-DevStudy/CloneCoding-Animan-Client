@@ -12,23 +12,30 @@ import { Grid } from '../elements';
 import CategoryAll from '../components/CategoryAll';
 import CategoryPowder from '../components/CategoryPowder';
 import CategoryCookie from '../components/CategoryCookie';
+import ProductList from '../components/ProductList';
 
 const Shop = () => {
   return (
-    <Grid
-      width="800px"
-      padding="20px"
-      margin="10vh 0 0 0"
-      al
-      addstyle={() => {
-        return css`
-          ${flexBox()}
-        `;
-      }}
-    >
-      <CategoryAll />
-      <CategoryPowder />
-      <CategoryCookie />
+    <Grid>
+      <Grid
+        width="800px"
+        padding="20px"
+        margin="2% 0 2% 4%"
+        al
+        addstyle={() => {
+          return css`
+            ${flexBox()}
+          `;
+        }}
+      >
+        <CategoryAll />
+        <CategoryPowder />
+        <CategoryCookie />
+      </Grid>
+
+      <Grid margin="0 0 10% 0">
+        <ProductList />
+      </Grid>
     </Grid>
   );
 };
