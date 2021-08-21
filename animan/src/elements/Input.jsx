@@ -2,9 +2,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// style
+// STYLE
 import { borderBox } from '../shared/style';
-//elements
+// ELEMENTS
 import Text from './Text';
 
 const Input = ({

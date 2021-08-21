@@ -1,28 +1,35 @@
 // LIBRARY
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Button,Input,Grid, Text } from '../elements/index';
-
-// style
+// STYLE
 import styled, { css } from 'styled-components';
 import { flexBox, flexHoz, flexVer } from '../shared/style';
+
+// ELEMENTS
+import { Button, Input, Grid, Text } from '../elements/index';
+
 
 const Login = () => {
   return (
     <React.Fragment>
       <Grid width="400px" margin="130px auto">
+        <Link to='/register'>
         <Button 
-          color="white" 
-          bgColor="buttonColor" 
+          color="gray" 
+          bgColor="white" 
           width="371px"
           addstyle={() => {
             return css`
-              border-radius: 0
+              border-radius: 0;
+              border: 1px solid lightgray;
+              font-size: 12px;
             `;
           }}
           >
-          로그인
+          ID/PW 회원가입
         </Button>
+        </Link>
         
 
         <Grid

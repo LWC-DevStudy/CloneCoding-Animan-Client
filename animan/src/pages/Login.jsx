@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Button,Input,Grid, Text } from '../elements/index';
 
-// style
+// STYLE
 import styled, { css } from 'styled-components';
 import { flexBox, flexHoz, flexVer } from '../shared/style';
 
