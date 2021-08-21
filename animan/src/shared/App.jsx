@@ -20,13 +20,16 @@ import ReviewWrite from '../pages/ReviewWrite';
 import ProductDetail from '../pages/ProductDetail';
 
 // COMPONENTS
-import Header from '../components/Header';
+
 // REDUX
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
+<<<<<<< HEAD
       <Header />
+=======
+>>>>>>> bf6802af9e0802310130cbf4b0a6820dec17704f
       <Route path='/' exact component={Main} />
       <Route path='/login' exact component={Login} />
       <Route path='/register' exact component={Register} />
