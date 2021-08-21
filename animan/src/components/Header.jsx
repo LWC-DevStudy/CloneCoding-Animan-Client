@@ -30,7 +30,12 @@ function Header() {
             `;
           }}
         >
-          <Text margin="0px 20px 0px 60px" color="gray" size="16px">
+          <Text
+            margin="0px 0px 0px 60px"
+            width="100px"
+            color="gray"
+            size="16px"
+          >
             LOGIN
           </Text>
           <Text color="gray" size="16px">
@@ -38,7 +43,7 @@ function Header() {
           </Text>
         </Grid>
         <Grid
-          width="100%"
+          width="75%"
           padding="0 25%"
           addstyle={() => {
             return css`
@@ -50,7 +55,7 @@ function Header() {
         </Grid>
         <Grid
           width="100%"
-          padding="0px"
+          padding="0"
           addstyle={() => {
             return css`
               ${flexHoz('flex-end')}
