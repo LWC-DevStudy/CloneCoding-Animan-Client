@@ -20,7 +20,7 @@ export const flexBox = (sortHoz = 'center', sortVer = 'center') => {
 export const flexHoz = (sort = 'center') => {
   return css`
     display: flex;
-    align-items: ${sort};
+    justify-content: ${sort};
   `;
 };
 

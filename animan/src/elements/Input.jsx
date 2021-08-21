@@ -2,10 +2,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// style
+// STYLE
 import { borderBox } from '../shared/style';
-//elements
-import Text from './Text.jsx';
+
+// ELEMENTS
+import Text from './Text';
+
 
 const Input = ({
   id,
@@ -39,13 +41,15 @@ const Input = ({
 
 const InputStyle = styled.input`
   width: ${(props) => props.width};
+  height: ${(props) => props.height};
   background: ${(props) => props.bgColor};
   color: ${(props) => `rgb(${props.theme.palette[props.color]})`};
   margin: ${(props) => props.margin};
   font-size: ${(props) => props.fontSize};
-  ${(props) => borderBox(props.radius, props.padding)};
   line-height: 1.5;
-  border: none;
+  padding: ${(props) => props.padding};
+  border: 1px solid lightgray;
+  /* border-color: ${(props) => `rgb(${props.theme.palette.gray})`}; */
 
   &::placeholder {
     color: ${(props) => `rgb(${props.theme.palette.gray})`};
