@@ -21,6 +21,7 @@ import ProductDetail from '../pages/ProductDetail';
 
 // COMPONENTS
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 // REDUX
 
@@ -28,17 +29,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <Route path='/' exact component={Main} />
-      <Route path='/login' exact component={Login} />
-      <Route path='/register' exact component={Register} />
-      <Route path='/registerselect' exact component={RegisterSelect} />
-      <Route path='/shop' exact component={Shop} />
-      <Route path='/cart' exact component={Cart} />
-      <Route path='/wishList' exact component={WishList} />
-      <Route path='/review' exact component={Review} />
-      <Route path='/rdetail' exact component={ReviewDetail} />
-      <Route path='/wrtie' exact component={ReviewWrite} />
-      <Route path='/pdetail' exact component={ProductDetail} />
+      <Route path="/" exact component={Main} />
+      <Route path="/login" exact component={Login} />
+      <Route path="/register" exact component={Register} />
+      <Route path="/registerselect" exact component={RegisterSelect} />
+      <Route path="/shop" exact component={Shop} />
+      <Route path="/cart" exact component={Cart} />
+      <Route path="/wishList" exact component={WishList} />
+      <Route path="/review" exact component={Review} />
+      <Route path="/rdetail" exact component={ReviewDetail} />
+      <Route path="/wrtie" exact component={ReviewWrite} />
+      <Route path="/pdetail" exact component={ProductDetail} />
+      <Footer />
     </ThemeProvider>
   );
 }
