@@ -5,24 +5,24 @@ import styled from 'styled-components';
 // style
 import { borderBox } from '../shared/style';
 //elements
-import Text from './Text.js';
+import Text from './Text';
 
 const Input = ({
-  id, 
+  id,
   type,
-  placeholder, 
-  value, 
-  changeEvent, 
-  keyPress, 
-  label, 
+  placeholder,
+  value,
+  changeEvent,
+  keyPress,
+  label,
   ...props
 }) => {
   return (
-      <>
+    <>
       {label && (
-          <Text magrin="auto" fontWeight="bold">
-              {label}
-          </Text>
+        <Text magrin="auto" fontWeight="bold">
+          {label}
+        </Text>
       )}
       <InputStyle
         id={id}
