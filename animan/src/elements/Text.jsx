@@ -24,6 +24,7 @@ const TextStyle = styled.p`
   font-weight: ${(props) => props.fontWeight};
   line-height: ${(props) => props.lineHeight};
   text-align: ${(props) => props.textAlign};
+  cursor: ${(props) => props.cursor};
   word-break: break-all;
   white-space: pre-line;
   ${(props) => props.addstyle()};
