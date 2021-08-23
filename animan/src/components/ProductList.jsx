@@ -5,15 +5,14 @@ import React from 'react';
 import ProductCard from '../components/ProductCard'
 
 // STYLE
-import styled, { css } from 'styled-components';
-import { flexBox, flexHoz, flexVer } from '../shared/style';
+import { css } from 'styled-components';
 
 //ELEMENTS
 import { Image, Grid, Text, Button } from '../elements/index';
 
 function ProductList() {
     return (
-        <Grid margin="auto" width="1308px">
+        <Grid margin="auto" width="1320px">
             <Grid
             addstyle={() => {
                 return css`

@@ -1,17 +1,39 @@
 // LIBRARY
 import React from 'react';
+import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
+import { logInDB } from '../redux/modules/user';
 
-import { Button,Input,Grid, Text } from '../elements/index';
 
 // STYLE
 import styled, { css } from 'styled-components';
 import { flexBox, flexHoz, flexVer } from '../shared/style';
 
+// ELEMENTS
+import { Button,Input,Grid, Text } from '../elements/index';
+
+
 const Login = () => {
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      username: Yup.string().required('아이디를 입력해주세요!!'),
+      password: Yup.string().required('패스워드를 입력해주세요!'),
+    }),
+
+    onSubmit: (values) => {
+      dispatch(logInDB(values));
+    },
+  });
   return (
     <React.Fragment>
       <Grid width="400px" margin="130px auto">
-      
+      <form name="loginForm" onSubmit={formik.handleSubmit}>
         <Input 
           type="text" 
           placeholder="아이디" 
@@ -120,6 +142,7 @@ const Login = () => {
         >
         비회원 주문배송 조회
         </Button>
+        </form>
 
       </Grid>
     </React.Fragment>
