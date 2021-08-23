@@ -5,28 +5,20 @@ import React from 'react';
 import { flexBox, flexHoz } from '../shared/style';
 import { css } from 'styled-components';
 
-//ELEMENTS
+// ELEMENTS
 import { Image, Grid, Text, Button, Input } from '../elements/index';
 
 const ProductDetail = () => {
   return (
-    <Grid margin="0 25vw" height="800px"
+    <Grid margin="0 25vw 300px"
     addstyle={() => {
       return css`
-        /* @media screen and (max-width: 2500px) {
-          height:24700px;
-          width:860px;
-        }
-        @media screen and (max-width: 1200px) {
-          height:12350px;
-          width:430px;
-        } */
         @media screen and (max-width: 1200px) {
           margin: 0;
         }
       `;
     }}>
-      <Text>Home > title</Text>
+      <Text margin="0 0 0 40px">Home > title</Text>
       <Grid
       addstyle={() => {
           return css`
@@ -125,12 +117,12 @@ const ProductDetail = () => {
         addstyle={() => {
               return css`
                 @media screen and (max-width: 2500px) {
-                  margin: -100px 30px;
+                  margin: 100px 30px;
                   height: 24700px;
                   width: 860px;
                 }
                 @media screen and (max-width: 1200px) {
-                  margin: 0 400px;
+                  margin: 100px 400px;
                   height:12350px;
                   width:430px;
                 }
@@ -147,34 +139,3 @@ const ProductDetail = () => {
 }
 
 export default ProductDetail;
-
-
-      
-      /* <Image 
-            style={{margin:'-100px 30px'}} 
-            addstyle={() => {
-            return css`
-              @media screen and (max-width: 2500px) {
-                height:14000px;
-                width:860px;
-              }
-              @media screen and (max-width: 1200px) {
-                height:7000px;
-                width:430px;
-              }
-              @media screen and (max-width: 1000px) {
-                margin: 16% 0 5% 0;
-              }
-              @media screen and (max-width: 900px) {
-                margin: 25% 0 5% 0;
-              }
-              @media screen and (max-width: 800px) {
-                display: none;
-              }
-              `;
-          }}src="https://cdn.imweb.me/upload/S20201221d467afdc83348/7e09cb64da349.png" /> 
-          */
-
-
-
-
