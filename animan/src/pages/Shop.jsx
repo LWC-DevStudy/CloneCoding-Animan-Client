@@ -20,11 +20,15 @@ const Shop = () => {
       <Grid
         width="800px"
         padding="20px"
-        margin="2% 0 2% 4%"
-        al
         addstyle={() => {
           return css`
             ${flexBox()}
+            @media screen and (max-width: 2000px) {
+              margin: 2% 0 2% 15%;
+            }
+            @media screen and (max-width: 1800px) {
+              margin: 2% 0 2% 4%;
+            }
           `;
         }}
       >
