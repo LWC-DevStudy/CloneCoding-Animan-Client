@@ -57,7 +57,7 @@ const FooterStyle = styled.footer`
   background: rgb(${(props) => props.theme.palette.footerColor});
   width: 100%;
   color: white;
-  height: 100%;
+  height: 25vh;
   padding: 2% 0 3% 0;
   text-align: center;
 `;
