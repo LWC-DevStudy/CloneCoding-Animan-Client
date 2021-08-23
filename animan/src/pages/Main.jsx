@@ -14,6 +14,9 @@ import { Grid, Text } from '../elements/index';
 // COMPONENTS
 import ProductList from '../components/ProductList';
 
+// COMPONENTS
+import ProductList from '../components/ProductList'
+
 const Main = () => {
   return (
     <Grid>
