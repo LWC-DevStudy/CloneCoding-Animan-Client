@@ -10,7 +10,22 @@ import { Image, Grid, Text, Button, Input } from '../elements/index';
 
 const ProductDetail = () => {
   return (
-    <Grid margin="0 30vw"height="800px">
+    <Grid margin="0 25vw" height="800px"
+    addstyle={() => {
+      return css`
+        /* @media screen and (max-width: 2500px) {
+          height:24700px;
+          width:860px;
+        }
+        @media screen and (max-width: 1200px) {
+          height:12350px;
+          width:430px;
+        } */
+        @media screen and (max-width: 1200px) {
+          margin: 0;
+        }
+      `;
+    }}>
       <Text>Home > title</Text>
       <Grid
       addstyle={() => {
@@ -20,7 +35,10 @@ const ProductDetail = () => {
         }}
       >
         <Grid width="350px" margin="30px">
-            <Image style={{height:'220px', width:'350px'}} src="https://cdn.imweb.me/thumbnail/20210726/af4b97e2e38d4.png" />
+            <Image 
+            style={{height:'220px', width:'350px'}} 
+            src="https://cdn.imweb.me/thumbnail/20210726/af4b97e2e38d4.png" 
+            />
         </Grid>
         <Grid width="370px">
           <Text>title</Text>
@@ -103,11 +121,60 @@ const ProductDetail = () => {
           </Grid>
         </Grid>
       </Grid>
-
+      <Image 
+        addstyle={() => {
+              return css`
+                @media screen and (max-width: 2500px) {
+                  margin: -100px 30px;
+                  height: 24700px;
+                  width: 860px;
+                }
+                @media screen and (max-width: 1200px) {
+                  margin: 0 400px;
+                  height:12350px;
+                  width:430px;
+                }
+                @media screen and (max-width: 700px) {
+                  height:6325px;
+                  width:215px;
+                }
+              `;
+            }}
+        src='https://cdn.imweb.me/upload/S20201221d467afdc83348/db25f2923b1d8.jpg' />
+        
     </Grid>
 )
 }
 
 export default ProductDetail;
 
-/* <Image style={{margin:'auto',height:'100000px', width:'860px',backgroundSize:'contain', display:'block'}} src="https://cdn.imweb.me/upload/S20201221d467afdc83348/7e09cb64da349.png" /> */
+
+      
+      /* <Image 
+            style={{margin:'-100px 30px'}} 
+            addstyle={() => {
+            return css`
+              @media screen and (max-width: 2500px) {
+                height:14000px;
+                width:860px;
+              }
+              @media screen and (max-width: 1200px) {
+                height:7000px;
+                width:430px;
+              }
+              @media screen and (max-width: 1000px) {
+                margin: 16% 0 5% 0;
+              }
+              @media screen and (max-width: 900px) {
+                margin: 25% 0 5% 0;
+              }
+              @media screen and (max-width: 800px) {
+                display: none;
+              }
+              `;
+          }}src="https://cdn.imweb.me/upload/S20201221d467afdc83348/7e09cb64da349.png" /> 
+          */
+
+
+
+

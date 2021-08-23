@@ -1,15 +1,15 @@
-// import
+// IMPORT
 import instance from '../../shared/axios';
 import { createSlice } from '@reduxjs/toolkit';
 
-// token
+// TOKEN
 import { setToken, removeToken } from '../../shared/token';
 
 // 회원가입
 export const signUpDB = ({ name, username, password, passwordCheck }) => {
   return function (dispatch, getState, { history }) {
     instance
-      .post('/register', { name, username, password, passwordCheck })
+      .post('/user/register', { name, username, password, passwordCheck })
       .then((res) => {
         console.log(res);
         window.alert('회원가입 성공!');
@@ -26,7 +26,7 @@ export const signUpDB = ({ name, username, password, passwordCheck }) => {
 export const logInDB = ({ username, password }) => {
   return function (dispatch, getState, { history }) {
     instance
-      .post('/login', { username, password })
+      .post('/user/login', { username, password })
       .then((res) => {
         dispatch(SetUser(res.data));
         setToken(res.data.token);
@@ -42,15 +42,19 @@ export const logInDB = ({ username, password }) => {
 };
 
 // 로그인 상태 확인
-export const logInCheck =
-  () =>
-  async (dispatch, getState, { history }) => {
-    const token = localStorage.token;
-
-    if (token !== undefined) {
-      dispatch(logChek());
-    }
-  };
+export const logInCheck = ({ username }) => {
+    return function (dispatch, getState, { history }) {
+        instance
+          .get('/user/userinfo', { username })
+          .then((res) => {
+            dispatch(logChek(res.data));
+          })
+          .catch((err) => {
+            window.alert('로그인 체크 실패!');
+            console.log(err);
+          });
+      };
+    };
 
 // initialState
 const initialState = {
@@ -58,7 +62,7 @@ const initialState = {
   is_login: false,
 };
 
-// redux
+// REDUX
 const user = createSlice({
     name: 'user',
     initialState,
@@ -71,6 +75,7 @@ const user = createSlice({
       },
       //로그인 체크
       logChek: (state, action) => {
+        state.user_info.username = action.payload.username;
         state.is_login = true;
       },
       // 로그아웃
