@@ -3,12 +3,14 @@ import React from 'react';
 // STYLE
 import styled, { css } from 'styled-components';
 // ELEMENTS
-import { Grid, Button } from '@material-ui/core';
+import { Grid } from '../elements/index';
 const ReviewWrite = () => {
   return (
     <React.Fragment>
-      <Grid width="80%">
-        <UploadButton for="input--file">사진 업로드하기</UploadButton>
+      <Grid width="80%" margin="auto">
+        <Grid width="95%">
+          <UploadButton for="input--file">사진 업로드하기</UploadButton>
+        </Grid>
         <Upload
           id="input--file"
           type="file"
@@ -41,7 +43,8 @@ const UploadButton = styled.label`
   cursor: pointer;
   outline: none;
   display: block;
-  margin: 50px auto;
+  float: right;
+  margin-bottom: 40px;
 `;
 
 const WriteButton = styled.button`
@@ -57,7 +60,7 @@ const WriteButton = styled.button`
 `;
 
 const Textarea = styled.textarea`
-  width: 85.5%;
+  width: 86%;
   height: 500px;
   padding: 21px;
   outline: none;
