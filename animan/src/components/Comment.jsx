@@ -1,5 +1,4 @@
 // LIBRARY
-import { timeout } from 'q';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
