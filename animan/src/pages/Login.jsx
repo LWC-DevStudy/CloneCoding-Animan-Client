@@ -22,8 +22,8 @@ const Login = () => {
       password: '',
     },
     validationSchema: Yup.object({
-      username: Yup.string().required('아이디를 입력해주세요!!'),
-      password: Yup.string().required('패스워드를 입력해주세요!'),
+      username: Yup.string().required('아이디를 입력하세요.'),
+      password: Yup.string().required('비밀번호를 입력하세요.'),
     }),
 
     onSubmit: (values) => {
@@ -35,24 +35,46 @@ const Login = () => {
       <Grid width="400px" margin="130px auto">
       <form name="loginForm" onSubmit={formik.handleSubmit}>
         <Input 
-          type="text" 
+          type="text"
+          id="username"
+          name="username"
+          changeEvent={formik.handleChange}
+          value={formik.values.username} 
           placeholder="아이디" 
           width="359px" 
           height="39px" 
           padding="0 0 0 10px"
         />
+        {/* {formik.touched.username && formik.errors.username && 
+        window.alert(formik.errors.username)
+        } */}
+        {formik.errors.username && formik.touched.username && (
+                  <p>{formik.errors.username}</p>
+                )}
+
         <Input 
           type="password" 
+          id="password"
+          name="password" 
+          changeEvent={formik.handleChange}
+          value={formik.values.password}
           placeholder="비밀번호" 
           width="359px" 
           height="39px" 
           padding="0 0 0 10px"
           addstyle={() => {
+            if (!(formik.errors.username && formik.touched.username))
             return css`
               border-top: 0px
             `;
           }}
         />
+        {/* {formik.touched.password && formik.errors.password 
+            ? window.alert(formik.errors.password)
+            : null } */}
+            {formik.errors.password && formik.touched.password && (
+                  <p>{formik.errors.password}</p>
+                )}
       
         <Grid margin="4px 0 10px -10px">
         <Input type="checkbox" width="30px"/>
