@@ -1,15 +1,42 @@
 // LIBRARY
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { history } from '../redux/configureStore';
 // STYLE
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 // ELEMENTS
 import { Grid } from '../elements/index';
+// REDUX
+import { addReviewDB } from '../redux/modules/review';
+import { imgActions } from '../redux/modules/image';
+import review from '../redux/modules/review';
+
 const ReviewWrite = () => {
+  const dispatch = useDispatch();
+
+  const [review, setReview] = React.useState();
+
+  const $contents = (e) => {
+    setReview(e.target.value);
+  };
+
+  const writeBtn = () => {
+    dispatch(addReviewDB(review));
+  };
+
+  // s3
+  const handleInputFile = (e) => {
+    const file = e.target.files[0];
+    dispatch(imgActions.setInitialState());
+    dispatch(imgActions.setFile([file]));
+  };
   return (
     <React.Fragment>
       <Grid width="80%" margin="auto">
         <Grid width="95%">
-          <UploadButton for="input--file">사진 업로드하기</UploadButton>
+          <UploadButton onChange={handleInputFile} for="input--file">
+            사진 업로드하기
+          </UploadButton>
         </Grid>
         <Upload
           id="input--file"
@@ -17,8 +44,8 @@ const ReviewWrite = () => {
           accept="image/png, image/jpeg"
           style={{ display: 'none' }}
         />
-        <Textarea />
-        <WriteButton>작성하기</WriteButton>
+        <Textarea onChange={$contents} />
+        <WriteButton onClick={writeBtn}>작성하기</WriteButton>
       </Grid>
     </React.Fragment>
   );
