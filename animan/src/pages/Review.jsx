@@ -1,6 +1,7 @@
 // LIBRARY
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { history } from '../redux/configureStore';
 // STYLE
 import { css } from 'styled-components';
 // ELEMENTS
@@ -51,7 +52,12 @@ const Review = () => {
             `;
           }}
         >
-          <Button width="200px" bgColor="buttonColor" color="white">
+          <Button
+            width="200px"
+            bgColor="buttonColor"
+            color="white"
+            clickEvent={history.push('/write')}
+          >
             글 작성
           </Button>
         </Grid>
@@ -63,7 +69,7 @@ const Review = () => {
             `;
           }}
         >
-          {reviewList.map((review, idx) => (
+          {/* {reviewList.map((review, idx) => (
             <InfinityScroll
               next={getMoreReview}
               index={idx}
@@ -72,7 +78,7 @@ const Review = () => {
             >
               <ReviewCard review={review} />
             </InfinityScroll>
-          ))}
+          ))} */}
         </Grid>
       </Grid>
     </React.Fragment>
