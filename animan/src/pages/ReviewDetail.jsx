@@ -1,6 +1,7 @@
 // LIBRARY
 import React from 'react';
 import { css } from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 
 // STYLE
 import { flexBox } from '../shared/style';
@@ -11,7 +12,21 @@ import { Grid, Text, Image, Button } from '../elements/index';
 // COMPONENTS
 import Comment from '../components/Comment';
 
+// REDUX
+import comment, { addCommentDB, getCommentDB } from '../redux/modules/comment';
+
 const ReviewDetail = () => {
+  const dispatch = useDispatch();
+  const commentList = useSelector((state) => state.comment.list);
+
+  React.useEffect(() => {
+    dispatch(getCommentDB());
+  }, []);
+
+  const addCommentBtn = () => {
+    dispatch(addCommentDB(comment));
+  };
+
   return (
     <Grid width="550px" height="auto" margin="3% auto" border="solid 1px black">
       <Grid>
@@ -44,8 +59,12 @@ const ReviewDetail = () => {
 
       <Comment />
 
+      {/* {commentList.map((c, idx) => {
+        return <Comment key={idx} {...c} />;
+      })} */}
+
       <Grid
-        width="220px"
+        width="70px"
         margin="2% auto"
         addstyle={() => {
           return css`
@@ -53,14 +72,13 @@ const ReviewDetail = () => {
           `;
         }}
       >
-        <Button color="white" bgColor="buttonColor" padding="8px">
+        <Button
+          color="white"
+          bgColor="buttonColor"
+          padding="8px"
+          clickEvent={addCommentBtn}
+        >
           댓글작성
-        </Button>
-        <Button color="white" bgColor="buttonColor" padding="8px">
-          수정하기
-        </Button>
-        <Button color="white" bgColor="buttonColor" padding="8px">
-          삭제하기
         </Button>
       </Grid>
     </Grid>
