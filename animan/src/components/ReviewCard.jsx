@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 // ELEMENTS
 import { Image, Grid } from '../elements/index';
 
-function ReviewCard() {
+function ReviewCard({ review }) {
   return (
     <Grid
       width="200px"
@@ -17,7 +17,7 @@ function ReviewCard() {
         `;
       }}
     >
-      <Image src="https://cdn.pixabay.com/photo/2021/08/18/22/42/australian-shepherd-6556697_1280.jpg" />
+      <Image src={review.reviewImage} />
     </Grid>
   );
 }

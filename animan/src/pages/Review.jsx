@@ -1,12 +1,45 @@
 // LIBRARY
-import React from 'react';
-import ReviewCard from '../components/ReviewCard';
+import React, { useEffect } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 // STYLE
-import styled, { css } from 'styled-components';
+import { css } from 'styled-components';
 // ELEMENTS
 import { Grid, Button } from '../elements/index';
 import { flexHoz } from '../shared/style';
+// COMPONENTS
+import ReviewCard from '../components/ReviewCard';
+// FUNCTION
+import InfinityScroll from '../shared/InfinityScroll';
+import {
+  getMoreReviewDB,
+  getReview,
+  getReviewDB,
+} from '../redux/modules/review';
+
 const Review = () => {
+  const dispatch = useDispatch();
+  const query = window.location.search;
+
+  const { reviewList, reviewId } = useSelector(
+    (state) => ({
+      reviewList: state.review.reviewList,
+      reviewId: state.review.reviewId,
+    }),
+    shallowEqual
+  );
+
+  const getMoreReview = () => {
+    dispatch(getMoreReviewDB());
+  };
+
+  useEffect(() => {
+    if (!query) dispatch(getReviewDB());
+
+    return () => {
+      dispatch(getReview([], 0));
+    };
+  }, [reviewId]);
+
   return (
     <React.Fragment>
       <Grid margin="120px auto" width="1300px">
@@ -30,21 +63,16 @@ const Review = () => {
             `;
           }}
         >
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
+          {reviewList.map((review, idx) => (
+            <InfinityScroll
+              next={getMoreReview}
+              index={idx}
+              length={reviewList.length}
+              key={review.reviewId}
+            >
+              <ReviewCard review={review} />
+            </InfinityScroll>
+          ))}
         </Grid>
       </Grid>
     </React.Fragment>
