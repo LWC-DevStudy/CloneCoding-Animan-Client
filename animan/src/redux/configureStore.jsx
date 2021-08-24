@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   user: user.reducer,
   cart: cart.reducer,
   comment: comment.reducer,
-  image: image.reducer,
+  image: image,
   product: product.reducer,
   review: review.reducer,
   wish: wish.reducer,
