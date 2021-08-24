@@ -2,12 +2,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// STYLE
-import { borderBox } from '../shared/style';
-
 // ELEMENTS
 import Text from './Text';
-
 
 const Input = ({
   id,
