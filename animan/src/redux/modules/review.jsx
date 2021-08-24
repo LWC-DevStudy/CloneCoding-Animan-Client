@@ -7,7 +7,8 @@ import { imgActions } from './image';
 // 리뷰 등록
 export const addReviewDB = (post) => {
   return function (dispatch, getState, { history }) {
-    const imgFile = getState().image.file;
+    const imgFile = getState();
+    console.log(imgFile);
     if (imgFile.length) {
       dispatch(
         imgActions.uploadImageDB(() => {
