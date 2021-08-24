@@ -34,14 +34,13 @@ const ReviewWrite = () => {
     <React.Fragment>
       <Grid width="80%" margin="auto">
         <Grid width="95%">
-          <UploadButton onChange={handleInputFile} for="input--file">
-            사진 업로드하기
-          </UploadButton>
+          <UploadButton for="input--file">사진 업로드하기</UploadButton>
         </Grid>
         <Upload
           id="input--file"
           type="file"
           accept="image/png, image/jpeg"
+          onChange={handleInputFile}
           style={{ display: 'none' }}
         />
         <Textarea onChange={$contents} />
