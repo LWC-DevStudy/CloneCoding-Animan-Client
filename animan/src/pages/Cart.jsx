@@ -11,7 +11,7 @@ import { Image, Grid, Button, Input } from '../elements/index';
 const Cart = () => {
   return (
       
-      <Grid margin="0 25vw">
+      <Grid margin="0 25vw" width="50vw">
         <h1 style={{fontSize:'24px', fontWeight:'400', display:'flex'}}>
           장바구니
           <div style={{
