@@ -25,6 +25,9 @@ import Footer from '../components/Footer';
 
 // REDUX
 
+// SHARED
+import OAuth2RedirectHandler from './OAuth2RedirectHandler';
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -40,6 +43,7 @@ function App() {
       <Route path="/rdetail" exact component={ReviewDetail} />
       <Route path="/write" exact component={ReviewWrite} />
       <Route path="/pdetail" exact component={ProductDetail} />
+      <Route path="/oauth/callback/kakao" component={OAuth2RedirectHandler}></Route>
       <Footer />
     </ThemeProvider>
   );

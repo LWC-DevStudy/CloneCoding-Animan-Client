@@ -1,9 +1,11 @@
 // LIBRARY
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { logInDB } from '../redux/modules/user';
+
+import { KAKAO_AUTH_URL } from "../redux/modules/OAuth"
 
 
 // STYLE
@@ -11,10 +13,25 @@ import styled, { css } from 'styled-components';
 import { flexBox, flexHoz, flexVer } from '../shared/style';
 
 // ELEMENTS
-import { Button,Input,Grid, Text } from '../elements/index';
+import { Button,Input,Grid, Text, } from '../elements/index';
 
+const { naver } = window;
 
 const Login = () => {
+  const initializeNaverLogin = () => {
+    const naverLogin = new naver.LoginWithNaverId({
+      clientId: 'b3YwqR1CdIVdVdXfssrM',
+      callbackUrl: 'http://localhost:3000', 
+      isPopup: false, // popup 형식으로 띄울것인지 설정
+      loginButton: { color: 'white', type: 1, height: '47' }, //버튼의 스타일, 타입, 크기를 지정
+    });
+    naverLogin.init();
+  };
+    
+  useEffect(() => {
+    initializeNaverLogin();
+  }, []);
+
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -106,9 +123,11 @@ const Login = () => {
         <Text size="13px">회원가입</Text>
         <Text size="13px">아이디 비밀번호 찾기</Text>
         </Grid>
+        </form>
+
 
         <Grid
-          margin="15px 0"
+          margin="15px -15px"
           addstyle={() => {
                       return css`
                         ${flexHoz()}
@@ -131,21 +150,24 @@ const Login = () => {
                     >
             네이버로 시작하기
         </Button>
+        <div id='naverIdLogin' />
+
 
         <Button 
           width="371px" 
           margin="10px 0"
+          clickEvent={() => window.location.href=KAKAO_AUTH_URL}
           addstyle={() => {
                       return css`
                         background-color:yellow;
                       `;
                     }}
                     >
-            카카오로 시작하기
+                    카카오로 시작하기
         </Button>
 
         <Grid
-        margin="15px 0"
+        margin="15px -15px"
         addstyle={() => {
                     return css`
                       ${flexHoz()}
@@ -164,7 +186,6 @@ const Login = () => {
         >
         비회원 주문배송 조회
         </Button>
-        </form>
 
       </Grid>
     </React.Fragment>
