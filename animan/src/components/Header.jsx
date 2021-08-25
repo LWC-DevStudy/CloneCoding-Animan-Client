@@ -1,11 +1,16 @@
 // LIBRARY
 import React from 'react';
-import { useDispatch } from 'react-redux';
+
 // STYLE
 import styled, { css } from 'styled-components';
 import { borderBox, flexBox, flexHoz } from '../shared/style';
+
 // SHARED
 import { removeToken } from '../shared/token';
+
+// ROUTE
+import { Link } from 'react-router-dom';
+
 //ELEMENTS
 import { Grid, Text } from '../elements/index';
 import Logo from '../shared/images/MainImage.png';
@@ -30,17 +35,21 @@ function Header() {
             `;
           }}
         >
-          <Text
-            margin="0px 0px 0px 60px"
-            width="100px"
-            color="gray"
-            size="16px"
-          >
-            LOGIN
-          </Text>
-          <Text color="gray" size="16px">
-            JOIN
-          </Text>
+          <Link style={{ textDecoration: 'none' }} to="/login">
+            <Text
+              margin="0px 0px 0px 60px"
+              width="100px"
+              color="gray"
+              size="16px"
+            >
+              LOGIN
+            </Text>
+          </Link>
+          <Link style={{ textDecoration: 'none' }} to="/register">
+            <Text color="gray" size="16px">
+              JOIN
+            </Text>
+          </Link>
         </Grid>
         <Grid
           width="75%"
@@ -51,7 +60,9 @@ function Header() {
             `;
           }}
         >
-          <img src={Logo} alt="로고" width="130px" />
+          <Link to="/">
+            <img src={Logo} alt="로고" width="130px" />
+          </Link>
         </Grid>
         <Grid
           width="100%"
@@ -62,12 +73,16 @@ function Header() {
             `;
           }}
         >
-          <Text color="gray" width="90px" size="19px">
-            Shop
-          </Text>
-          <Text color="gray" size="19px">
-            review
-          </Text>
+          <Link style={{ textDecoration: 'none' }} to="/shop">
+            <Text color="gray" width="90px" size="19px">
+              Shop
+            </Text>
+          </Link>
+          <Link style={{ textDecoration: 'none' }} to="/review">
+            <Text color="gray" size="19px">
+              review
+            </Text>
+          </Link>
         </Grid>
       </Grid>
     </HeaderStyle>
