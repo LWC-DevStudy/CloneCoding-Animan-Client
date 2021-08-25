@@ -23,12 +23,12 @@ const Review = () => {
 
   const { reviewList, reviewId } = useSelector(
     (state) => ({
-      reviewList: state.review.reviewList,
-      reviewId: state.review.reviewId,
+      reviewList: state.review.list,
+      reviewId: state.review.start,
     }),
     shallowEqual
   );
-
+  console.log(reviewId);
   const getMoreReview = () => {
     dispatch(getMoreReviewDB());
   };
@@ -39,7 +39,7 @@ const Review = () => {
     return () => {
       dispatch(getReview([], 0));
     };
-  }, [reviewId]);
+  }, []);
 
   return (
     <React.Fragment>
@@ -52,12 +52,7 @@ const Review = () => {
             `;
           }}
         >
-          <Button
-            width="200px"
-            bgColor="buttonColor"
-            color="white"
-            clickEvent={history.push('/write')}
-          >
+          <Button width="200px" bgColor="buttonColor" color="white">
             글 작성
           </Button>
         </Grid>
@@ -69,7 +64,7 @@ const Review = () => {
             `;
           }}
         >
-          {/* {reviewList.map((review, idx) => (
+          {reviewList.map((review, idx) => (
             <InfinityScroll
               next={getMoreReview}
               index={idx}
@@ -78,7 +73,7 @@ const Review = () => {
             >
               <ReviewCard review={review} />
             </InfinityScroll>
-          ))} */}
+          ))}
         </Grid>
       </Grid>
     </React.Fragment>

@@ -38,7 +38,7 @@ export const addReviewDB = (post) => {
 export const getReviewDB = (limit = 30) => {
   return function (dispatch, getState, { history }) {
     instance
-      .get(`/review/?page=0&limit=${limit + 1}`)
+      .get(`/review?page=0&size=${limit + 1}`)
       .then((res) => {
         let reviewList = res.data;
 
@@ -47,11 +47,12 @@ export const getReviewDB = (limit = 30) => {
           return;
         }
 
-        reviewList.pop();
+        // reviewList.pop();
         dispatch(getReview(reviewList, limit));
       })
       .catch((err) => {
-        window.alert('페이지에 오류가 있어요!', err);
+        window.alert('페이지에 오류가 있어요!');
+        console.log(err);
       });
   };
 };
@@ -65,7 +66,7 @@ export const getMoreReviewDB = (limit = 30) => {
     if (start === null) return;
 
     instance
-      .get(`/review/?page=${start}&limit=${limit + 1}`)
+      .get(`/review/?page=${start}&size=${limit + 1}`)
       .then((res) => {
         const reviewList = res.data;
 
@@ -74,7 +75,6 @@ export const getMoreReviewDB = (limit = 30) => {
           return;
         }
 
-        reviewList.pop();
         dispatch(getMoreReview(reviewList, start + limit));
       })
       .catch((err) => {
@@ -150,11 +150,13 @@ const review = createSlice({
     },
 
     getReview: (state, action) => {
-      state.list = { list: action.payload, page: action.start };
+      state.list = action.payload.content;
+      state.start = action.payload.pageable.pageNumber;
     },
 
     getMoreReview: (state, action) => {
-      state.list = { list: action.payload, page: action.start };
+      state.list = action.payload.content;
+      state.start = action.payload.pageable.pageNumber;
     },
 
     getOneReview: (state, action) => {
