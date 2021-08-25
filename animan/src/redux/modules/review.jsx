@@ -38,7 +38,7 @@ export const addReviewDB = (post) => {
 export const getReviewDB = (limit = 30) => {
   return function (dispatch, getState, { history }) {
     instance
-      .get(`/review?page=0&size=${limit + 1}`)
+      .get(`/review?page=0&size=${limit}`)
       .then((res) => {
         let reviewList = res.data;
 
@@ -66,7 +66,7 @@ export const getMoreReviewDB = (limit = 30) => {
     if (start === null) return;
 
     instance
-      .get(`/review/?page=${start}&size=${limit + 1}`)
+      .get(`/review/?page=${start}&size=${limit}`)
       .then((res) => {
         const reviewList = res.data;
 
