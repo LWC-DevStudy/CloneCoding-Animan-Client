@@ -16,6 +16,7 @@ import {
   getReview,
   getReviewDB,
 } from '../redux/modules/review';
+import { Link } from 'react-router-dom';
 
 const Review = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const Review = () => {
     if (!query) dispatch(getReviewDB());
 
     return () => {
-      dispatch(getReview([], 0));
+      dispatch(getReviewDB());
     };
   }, []);
 
