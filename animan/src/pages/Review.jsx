@@ -16,6 +16,7 @@ import {
   getReview,
   getReviewDB,
 } from '../redux/modules/review';
+import { Link } from 'react-router-dom';
 
 const Review = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const Review = () => {
     if (!query) dispatch(getReviewDB());
 
     return () => {
-      dispatch(getReview([], 0));
+      dispatch(getReviewDB());
     };
   }, []);
 
@@ -52,9 +53,11 @@ const Review = () => {
             `;
           }}
         >
-          <Button width="200px" bgColor="buttonColor" color="white">
-            글 작성
-          </Button>
+          <Link to="/write">
+            <Button width="200px" bgColor="buttonColor" color="white">
+              글 작성
+            </Button>
+          </Link>
         </Grid>
         <Grid
           addstyle={() => {
