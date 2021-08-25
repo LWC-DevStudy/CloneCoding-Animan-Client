@@ -34,7 +34,7 @@ const ReviewWrite = () => {
     <React.Fragment>
       <Grid width="80%" margin="auto">
         <Grid width="95%">
-          <UploadButton for="input--file">사진 업로드하기</UploadButton>
+          <UploadButton htmlFor="input--file">사진 업로드하기</UploadButton>
         </Grid>
         <Upload
           id="input--file"
