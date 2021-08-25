@@ -66,7 +66,7 @@ export const getMoreReviewDB = (limit = 30) => {
     if (start === null) {
       return;
     } else {
-      start = start + 1;
+      start = start + 1
     }
 
     instance
