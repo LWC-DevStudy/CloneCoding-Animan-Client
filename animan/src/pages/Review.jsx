@@ -24,7 +24,7 @@ const Review = () => {
   const { reviewList, reviewId } = useSelector(
     (state) => ({
       reviewList: state.review.list,
-      reviewId: state.review.start,
+      reviewId: state.review,
     }),
     shallowEqual
   );

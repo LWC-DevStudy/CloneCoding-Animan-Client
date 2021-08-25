@@ -35,19 +35,18 @@ export const addReviewDB = (post) => {
 };
 
 // 리뷰 가져오기
-export const getReviewDB = (limit = 30) => {
+export const getReviewDB = (limit = 10) => {
   return function (dispatch, getState, { history }) {
     instance
       .get(`/review?page=0&size=${limit}`)
       .then((res) => {
         let reviewList = res.data;
-
+        console.log(reviewList);
         if (reviewList.length < limit + 1) {
           dispatch(getReview(reviewList, null));
           return;
         }
 
-        // reviewList.pop();
         dispatch(getReview(reviewList, limit));
       })
       .catch((err) => {
@@ -57,16 +56,16 @@ export const getReviewDB = (limit = 30) => {
   };
 };
 
-export const getMoreReviewDB = (limit = 30) => {
-  return function (dispatch, getState) {
+export const getMoreReviewDB = (limit = 11) => {
+  return function (dispatch, getState, { history }) {
     // 콘솔
-    let start = getState().review.page;
+    let start = getState().review.start;
     console.log(start);
 
     if (start === null) {
       return;
     } else {
-      start = start + 1
+      start += 1;
     }
 
     instance
@@ -78,7 +77,7 @@ export const getMoreReviewDB = (limit = 30) => {
           dispatch(getMoreReview(reviewList, null));
           return;
         }
-
+        reviewList.content.pop();
         dispatch(getMoreReview(reviewList, start + limit));
       })
       .catch((err) => {
@@ -140,6 +139,7 @@ export const deleteReviewDB = (reviewId) => {
 const initialState = {
   list: [],
   page: 0,
+  start: 0,
 };
 
 // 리듀서
@@ -155,12 +155,18 @@ const review = createSlice({
 
     getReview: (state, action) => {
       state.list = action.payload.content;
-      state.start = action.payload.pageable.pageNumber;
+      state.start = action.payload.number;
     },
 
     getMoreReview: (state, action) => {
-      state.list = action.payload.content;
-      state.start = action.payload.pageable.pageNumber;
+      return {
+        ...state,
+        list: [...state.list, ...action.payload.content],
+        start: action.payload.number,
+      };
+      // state.list = action.payload.content;
+      // state.start = action.payload.number;
+      console.log(action.payload);
     },
 
     getOneReview: (state, action) => {
