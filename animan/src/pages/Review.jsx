@@ -1,7 +1,7 @@
 // LIBRARY
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { history } from '../redux/configureStore';
+import { Link } from 'react-router-dom';
 // STYLE
 import { css } from 'styled-components';
 // ELEMENTS
@@ -52,9 +52,11 @@ const Review = () => {
             `;
           }}
         >
-          <Button width="200px" bgColor="buttonColor" color="white">
-            글 작성
-          </Button>
+          <Link to="/write">
+            <Button width="200px" bgColor="buttonColor" color="white">
+              글 작성
+            </Button>
+          </Link>
         </Grid>
         <Grid
           addstyle={() => {
