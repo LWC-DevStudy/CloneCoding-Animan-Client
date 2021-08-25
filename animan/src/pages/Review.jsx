@@ -16,7 +16,6 @@ import {
   getReview,
   getReviewDB,
 } from '../redux/modules/review';
-import { Link } from 'react-router-dom';
 
 const Review = () => {
   const dispatch = useDispatch();
