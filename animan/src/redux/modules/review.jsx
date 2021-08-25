@@ -60,10 +60,14 @@ export const getReviewDB = (limit = 30) => {
 export const getMoreReviewDB = (limit = 30) => {
   return function (dispatch, getState) {
     // 콘솔
-    const start = getState().review.page;
+    let start = getState().review.page;
     console.log(start);
 
-    if (start === null) return;
+    if (start === null) {
+      return;
+    } else {
+      start = start + 1
+    }
 
     instance
       .get(`/review/?page=${start}&size=${limit}`)
