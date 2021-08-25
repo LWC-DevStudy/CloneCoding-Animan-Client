@@ -2,6 +2,7 @@
 import instance from '../../shared/axios';
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 // TOKEN
 import { setToken, removeToken, getToken } from '../../shared/token';
@@ -52,7 +53,7 @@ export const logInCheck = ({ username }) => {
         instance
           .get('/user/userinfo', { username })
           .then((res) => {
-            dispatch(logChek(res.data));
+            dispatch(logCheck(res.data));
           })
           .catch((err) => {
             window.alert('로그인 체크 실패!');
@@ -85,6 +86,7 @@ export const kakaoLogin = (code) => {
     }
 };
 
+
 // initialState
 const initialState = {
   user_info: '',
@@ -98,13 +100,13 @@ const user = createSlice({
     reducers: {
       //로그인
       SetUser: (state, action) => {
-        state.user_info.username = action.payload.username;
+        state.user_info = action.payload.username;
         setToken('token', action.payload.token);
         state.is_login = true;
       },
       //로그인 체크
-      logChek: (state, action) => {
-        state.user_info.username = action.payload.username;
+      logCheck: (state, action) => {
+        state.user_info = action.payload.username;
         state.is_login = true;
       },
       // 로그아웃
@@ -116,5 +118,5 @@ const user = createSlice({
     },
   });
 
-export const { SetUser, LogOut, logChek } = user.actions;
+export const { SetUser, LogOut, logCheck } = user.actions;
 export default user;

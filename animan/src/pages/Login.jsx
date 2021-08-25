@@ -2,11 +2,12 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { logInDB } from '../redux/modules/user';
+import { useLocation } from 'react-router-dom';
 
 import { KAKAO_AUTH_URL } from "../redux/modules/OAuth"
-
 
 // STYLE
 import styled, { css } from 'styled-components';
@@ -18,19 +19,29 @@ import { Button,Input,Grid, Text, } from '../elements/index';
 const { naver } = window;
 
 const Login = () => {
-  // const initializeNaverLogin = () => {
-  //   const naverLogin = new naver.LoginWithNaverId({
-  //     clientId: 'b3YwqR1CdIVdVdXfssrM',
-  //     callbackUrl: 'http://localhost:3000', 
-  //     isPopup: false, // popup 형식으로 띄울것인지 설정
-  //     loginButton: { color: 'white', type: 1, height: '47' }, //버튼의 스타일, 타입, 크기를 지정
-  //   });
-  //   naverLogin.init();
-  // };
+  const initializeNaverLogin = () => {
+    const naverLogin = new naver.LoginWithNaverId({
+      clientId: 'b3YwqR1CdIVdVdXfssrM',
+      callbackUrl: 'http://localhost:3000/', 
+      isPopup: false, // popup 형식으로 띄울것인지 설정
+      loginButton: { color: 'white', type: 1, height: '47' }, //버튼의 스타일, 타입, 크기를 지정
+    });
+    naverLogin.init();
+  };
+
+  const location = useLocation();
+
+  const getNaverToken = () => {
+    if (!location.hash) return;
+    const token = location.hash.split('=')[1].split('&')[0];
+    console.log(token);
+  };
+
     
-  // useEffect(() => {
-  //   initializeNaverLogin();
-  // }, []);
+  useEffect(() => {
+    initializeNaverLogin();
+    getNaverToken();
+  }, []);
 
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -120,7 +131,9 @@ const Login = () => {
                     `;
                   }}
         >
+        <Link to='/register' style={{textDecoration:'none'}}>
         <Text size="13px">회원가입</Text>
+        </Link>
         <Text size="13px">아이디 비밀번호 찾기</Text>
         </Grid>
         </form>
@@ -150,7 +163,7 @@ const Login = () => {
                     >
             네이버로 시작하기
         </Button>
-        <div id='naverIdLogin' />
+        <div id='naverIdLogin'/>
 
 
         <Button 
