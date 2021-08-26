@@ -1,7 +1,7 @@
 // LIBRARY
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // ELEMENTS
 import { Grid, Input, Button } from '../elements/index';
@@ -14,11 +14,14 @@ import {
   addCommentDB,
 } from '../redux/modules/comment';
 
-const Comment = (props) => {
+const Comment = (props, {}) => {
   const dispatch = useDispatch();
   const reviewId = props.reviewId.reviewId;
-  console.log(reviewId);
   const [comment, setComment] = React.useState();
+
+  const commentList = useSelector((state) => state.comment.list);
+
+  console.log(commentList);
 
   React.useEffect(() => {
     dispatch(getCommentDB(reviewId));
@@ -50,41 +53,37 @@ const Comment = (props) => {
         padding="0"
       >
         <UlStyle>
-          <LiStyle>
-            댓글111
-            <Button
-              clickEvent={deleteCommentBtn}
-              color="white"
-              bgColor="buttonColor"
-              padding="4px"
-              margin="0 4px"
-              addstyle={() => {
-                return css`
-                  float: right;
-                `;
-              }}
-            >
-              삭제
-            </Button>
-            <Button
-              clickEvent={editCommentBtn}
-              color="white"
-              bgColor="buttonColor"
-              padding="4px"
-              margin="0 4px"
-              addstyle={() => {
-                return css`
-                  float: right;
-                `;
-              }}
-            >
-              수정
-            </Button>
-          </LiStyle>
-          <LiStyle>댓글222</LiStyle>
-          <LiStyle>댓글333</LiStyle>
-          <LiStyle>댓글444</LiStyle>
-          <LiStyle>댓글555</LiStyle>
+          <Button
+            clickEvent={deleteCommentBtn}
+            color="white"
+            bgColor="buttonColor"
+            padding="4px"
+            margin="0 4px"
+            addstyle={() => {
+              return css`
+                float: right;
+              `;
+            }}
+          >
+            삭제
+          </Button>
+          <Button
+            clickEvent={editCommentBtn}
+            color="white"
+            bgColor="buttonColor"
+            padding="4px"
+            margin="0 4px"
+            addstyle={() => {
+              return css`
+                float: right;
+              `;
+            }}
+          >
+            수정
+          </Button>
+          {commentList.map((comment, idx) => (
+            <LiStyle key={idx}>{comment.commentContents}</LiStyle>
+          ))}
         </UlStyle>
       </Grid>
 

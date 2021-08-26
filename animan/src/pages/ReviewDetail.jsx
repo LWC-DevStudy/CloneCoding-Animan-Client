@@ -36,11 +36,6 @@ const ReviewDetail = (review, comment) => {
     dispatch(deleteReviewDB(reviewId));
   };
 
-  const [contents, setContent] = React.useState();
-
-  const commentList = useSelector((state) => state.comment);
-  console.log(commentList);
-
   // React.useEffect(() => {
   //   dispatch(getCommentDB(reviewId));
   // }, []);

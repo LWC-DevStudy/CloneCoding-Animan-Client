@@ -9,8 +9,6 @@ import { Image, Grid } from '../elements/index';
 
 function ReviewCard({ review }) {
   const dispatch = useDispatch();
-  const reviewId = review.reviewId;
-  console.log(reviewId);
 
   return (
     <Grid
