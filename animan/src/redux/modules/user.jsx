@@ -53,7 +53,6 @@ export const logInCheck = () => {
         instance
           .get('/user/userinfo')
           .then((res) => {
-            console.log(res);
             dispatch(logCheck(res.data.username));
           })
           .catch((err) => {
