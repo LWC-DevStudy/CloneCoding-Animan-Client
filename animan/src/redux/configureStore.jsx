@@ -22,7 +22,7 @@ const history = createBrowserHistory();
 const rootReducer = combineReducers({
   user: user.reducer,
   cart: cart.reducer,
-  comment: comment.reducer,
+  // comment: comment.reducer,
   image: image,
   product: product.reducer,
   review: review.reducer,
