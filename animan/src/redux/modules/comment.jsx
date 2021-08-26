@@ -1,19 +1,25 @@
 // import
 import instance from '../../shared/axios';
 import { createSlice } from '@reduxjs/toolkit';
+import { getToken } from '../../shared/token';
 
 // 댓글 작성
-export const addCommentDB = (reviewId, commentContents) => {
+export const addCommentDB = (commentContents, reviewId) => {
   return function (dispatch, getState, { history }) {
+    const token = getToken('token');
+    instance.defaults.headers.common['authorization'] = `${token}`;
     instance
-      .post(`/comment/${reviewId}`, { commentContents: commentContents })
+      .post(`/comment/${reviewId}`, { commentContents })
       .then((res) => {
-        dispatch(addComment(comment));
+        dispatch(addComment({ commentContents: commentContents }));
         window.alert('댓글 달아주셔서 감사합니다!');
         history.push('/rdetail');
       })
       .catch((err) => {
         console.error(err);
+        console.log(reviewId);
+        console.log(commentContents);
+        console.log(token);
       });
   };
 };
@@ -22,7 +28,7 @@ export const addCommentDB = (reviewId, commentContents) => {
 export const getCommentDB = (reviewId) => {
   return function (dispatch, getState, { history }) {
     instance
-      .get(`/comment/${reviewId.reviewId}`)
+      .get(`/comment/${reviewId}`)
       .then((res) => {
         let commentList = res.commentContents;
         dispatch(getComment(commentList));
@@ -79,8 +85,9 @@ const comment = createSlice({
   initialState,
   reducers: {
     addComment: (state, action) => {
-      const comment = action.payload.commentContents;
-      state.list.push(comment);
+      const comments = action.payload.comment;
+      state.list.push(comments);
+      // return { ...state, list: comments };
     },
 
     getComment: (state, action) => {
