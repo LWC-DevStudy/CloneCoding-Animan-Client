@@ -2,6 +2,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
 
 // STYLE
 import theme from '../shared/style';
@@ -24,11 +25,22 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 // REDUX
+import { logInCheck } from '../redux/modules/user'
 
 // SHARED
 import OAuth2RedirectHandler from './OAuth2RedirectHandler';
 
-function App() {
+function App(props) {
+  const dispatch = useDispatch();
+  let is_login = useSelector((state) => state.user.is_login);
+
+  React.useEffect(() => {
+    //로그인 상태 확인
+    if(!is_login) {
+      dispatch(logInCheck());
+    }
+  },[])
+
   return (
     <ThemeProvider theme={theme}>
       <Header />

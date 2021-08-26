@@ -1,5 +1,6 @@
 // LIBRARY
 import React from 'react';
+import {useDispatch} from 'react-redux';
 
 // STYLE
 import styled, { css } from 'styled-components';
@@ -7,10 +8,15 @@ import { flexBox, flexHoz, flexVer } from '../shared/style';
 
 //ELEMENTS
 import { Image, Grid, Button, Input } from '../elements/index';
+// REDUX
+import { changeItem, deleteCart } from '../redux/modules/cart'
 
 const Cart = () => {
+  const dispatch = useDispatch()
+  const delBtn = () => {
+    dispatch(deleteCart())
+  }
   return (
-      
       <Grid margin="0 25vw" width="50vw">
         <h1 style={{fontSize:'24px', fontWeight:'400', display:'flex'}}>
           장바구니
@@ -97,7 +103,8 @@ const Cart = () => {
                   `;
                 }}>주문</Button>
                   <Button
-                  width="50px"
+                    width="50px"
+                    clickEvent={delBtn}
                     addstyle={() => {
                     return css`
                       border: 1px solid lightgray;
