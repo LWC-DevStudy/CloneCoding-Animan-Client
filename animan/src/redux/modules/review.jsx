@@ -90,13 +90,14 @@ export const getMoreReviewDB = (limit = 11) => {
 export const getOneReviewDB = (reviewId = '') => {
   return function (dispatch, getState, { history }) {
     instance
-      .get(`/review/${reviewId}`)
+      .get(`/review/${reviewId.reviewId}`)
       .then((res) => {
         let detailReview = res.data;
         dispatch(getOneReview(detailReview));
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
+        console.log(reviewId);
       });
   };
 };

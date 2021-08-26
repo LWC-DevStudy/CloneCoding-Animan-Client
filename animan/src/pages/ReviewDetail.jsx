@@ -14,23 +14,44 @@ import Comment from '../components/Comment';
 
 // REDUX
 import comment, { addCommentDB, getCommentDB } from '../redux/modules/comment';
+import review, {
+  getOneReviewDB,
+  deleteReviewDB,
+} from '../redux/modules/review';
 
-const ReviewDetail = () => {
+const ReviewDetail = (review, comment) => {
   const dispatch = useDispatch();
-  const commentList = useSelector((state) => state.comment.list);
 
+  const { reviewImage, reviewContent } = useSelector((state) => ({
+    reviewImage: state.review.list.reviewImage,
+    reviewContent: state.review.list.reviewContents,
+  }));
+  console.log(reviewContent);
+  const reviewId = review.match.params;
   React.useEffect(() => {
-    dispatch(getCommentDB());
+    dispatch(getOneReviewDB(reviewId));
   }, []);
-
-  const addCommentBtn = () => {
-    dispatch(addCommentDB(comment));
+  const deleteBtn = () => {
+    dispatch(deleteReviewDB(reviewId));
   };
+
+  const [contents, setContent] = React.useState();
+  console.log(review);
+
+  // const commentList = useSelector((state) => state.comment.list);
+
+  // React.useEffect(() => {
+  //   dispatch(getCommentDB());
+  // }, []);
+
+  // const addCommentBtn = () => {
+  //   dispatch(addCommentDB(comment));
+  // };
 
   return (
     <Grid width="550px" height="auto" margin="3% auto" border="solid 1px black">
       <Grid>
-        <Image src="https://cdn.pixabay.com/photo/2021/08/18/22/42/australian-shepherd-6556697_1280.jpg" />
+        <Image src={reviewImage} />
       </Grid>
 
       <Grid
@@ -52,7 +73,7 @@ const ReviewDetail = () => {
           `;
         }}
       >
-        <Text>content</Text>
+        <Text>{reviewContent}</Text>
       </Grid>
 
       <hr />
@@ -76,7 +97,7 @@ const ReviewDetail = () => {
           color="white"
           bgColor="buttonColor"
           padding="8px"
-          clickEvent={addCommentBtn}
+          // clickEvent={addCommentBtn}
         >
           댓글작성
         </Button>
