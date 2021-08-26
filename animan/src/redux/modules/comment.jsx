@@ -9,11 +9,11 @@ export const addCommentDB = (commentContents, reviewId) => {
     const token = getToken('token');
     instance.defaults.headers.common['authorization'] = `${token}`;
     instance
-      .post(`/comment/${reviewId}`, { commentContents })
+      .post(`/comment/${reviewId}`, { commentContents: commentContents })
       .then((res) => {
-        dispatch(addComment({ commentContents: commentContents }));
+        dispatch(addComment(commentContents));
         window.alert('댓글 달아주셔서 감사합니다!');
-        history.push('/rdetail');
+        history.push('/review');
       })
       .catch((err) => {
         console.error(err);
@@ -30,9 +30,9 @@ export const getCommentDB = (reviewId) => {
     instance
       .get(`/comment/${reviewId}`)
       .then((res) => {
-        let commentList = res.commentContents;
+        let commentList = res.data;
+        console.log(commentList);
         dispatch(getComment(commentList));
-        console.log(reviewId.reviewId);
       })
       .catch((err) => {
         console.error(err);
@@ -77,7 +77,6 @@ export const editCommentDB = (commentId, commentContents) => {
 
 const initialState = {
   list: [],
-  // comment: null,
 };
 
 const comment = createSlice({
@@ -85,8 +84,10 @@ const comment = createSlice({
   initialState,
   reducers: {
     addComment: (state, action) => {
-      const comments = action.payload.comment;
+      const comments = action.payload.comments;
+      // console.log(comments);
       state.list.push(comments);
+      // console.log(comments);
       // return { ...state, list: comments };
     },
 
