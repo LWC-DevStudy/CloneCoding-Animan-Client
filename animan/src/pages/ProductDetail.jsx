@@ -17,6 +17,16 @@ const ProductDetail = (product) => {
   const dispatch = useDispatch();
   console.log(productId);
 
+  const [count, setCount] = React.useState(0)
+  const plusCount = () => {
+    setCount(count + 1)
+  }
+  const minusCount = () => {
+    if (count > 0) {
+      setCount(count - 1)
+    }
+  }
+
   React.useEffect(() => {
     dispatch(getOneProductDB(productId));
   });
@@ -48,7 +58,7 @@ const ProductDetail = (product) => {
         </Grid>
         <Grid width="370px">
           <Text>title</Text>
-          <Text>price</Text>
+          <Text>30000원</Text>
           <Text>제조사 애니먼협력사</Text>
           <Text>
             배송비 3,000원 (50,000원 이상 무료배송) | 도서산간 배송비 추가
@@ -80,6 +90,7 @@ const ProductDetail = (product) => {
               <Grid margin="0 0 20px 20px">
                 <Button
                   width="30px"
+                  clickEvent={minusCount}
                   addstyle={() => {
                     return css`
                       border: 1px solid lightgray;
@@ -90,9 +101,10 @@ const ProductDetail = (product) => {
                 >
                   -
                 </Button>
-                <Input width="30px" height="28.5px" value="1"></Input>
+                <Input type="text" width="30px" height="28.5px" disabled value={count}></Input>
                 <Button
                   width="30px"
+                  clickEvent={plusCount}
                   addstyle={() => {
                     return css`
                       border: 1px solid lightgray;
@@ -105,7 +117,7 @@ const ProductDetail = (product) => {
                 </Button>
               </Grid>
               <Text width="100px" margin="7px 0">
-                price
+              {30000*count}원
               </Text>
             </Grid>
 
@@ -117,8 +129,8 @@ const ProductDetail = (product) => {
                 `;
               }}
             >
-              <Text>총 상품금액(1개)</Text>
-              <Text>price</Text>
+              <Text>총 상품금액({count}개)</Text>
+              <Text>{30000*count}원</Text>
             </Grid>
             <Grid>
               <Button

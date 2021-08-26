@@ -9,7 +9,7 @@ export const addCartDB = (productId) => {
       .post(`/cart/${productId}`, {})
       .then((res) => {
         dispatch(addCart());
-        window.alert('장바구니에 추가 되었습니다!');
+        window.alert('선택하신 상품을 장바구니에 담았습니다.');
       })
       .catch((err) => {
         console.error(err);
@@ -31,7 +31,6 @@ const cart = createSlice({
     reducers: {
         addCart: (state, action) => {
             state.carts.push(action.payload)
-            window.alert('메뉴가 추가되었습니다!')
         },
         getCart: (state, action) => {
             state.carts = action.payload;
