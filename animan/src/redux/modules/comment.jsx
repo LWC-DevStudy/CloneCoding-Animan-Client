@@ -22,10 +22,11 @@ export const addCommentDB = (reviewId, commentContents) => {
 export const getCommentDB = (reviewId) => {
   return function (dispatch, getState, { history }) {
     instance
-      .get(`/comment/${reviewId}`)
+      .get(`/comment/${reviewId.reviewId}`)
       .then((res) => {
         let commentList = res.commentContents;
         dispatch(getComment(commentList));
+        console.log(reviewId.reviewId);
       })
       .catch((err) => {
         console.error(err);

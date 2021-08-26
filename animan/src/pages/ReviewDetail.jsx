@@ -38,7 +38,8 @@ const ReviewDetail = (review, comment) => {
   const [contents, setContent] = React.useState();
   console.log(review);
 
-  // const commentList = useSelector((state) => state.comment.list);
+  const commentList = useSelector((state) => state.comment.list);
+  console.log(commentList);
 
   // React.useEffect(() => {
   //   dispatch(getCommentDB());
@@ -47,6 +48,10 @@ const ReviewDetail = (review, comment) => {
   // const addCommentBtn = () => {
   //   dispatch(addCommentDB(comment));
   // };
+
+  React.useEffect(() => {
+    dispatch(getCommentDB(reviewId));
+  }, []);
 
   return (
     <Grid width="550px" height="auto" margin="3% auto" border="solid 1px black">

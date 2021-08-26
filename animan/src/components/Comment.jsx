@@ -7,7 +7,11 @@ import { useDispatch } from 'react-redux';
 import { Grid, Input, Button } from '../elements/index';
 
 // REDUX
-import { deleteCommentDB, editCommentDB } from '../redux/modules/comment';
+import {
+  deleteCommentDB,
+  editCommentDB,
+  getCommentDB,
+} from '../redux/modules/comment';
 
 const Comment = () => {
   const dispatch = useDispatch();
