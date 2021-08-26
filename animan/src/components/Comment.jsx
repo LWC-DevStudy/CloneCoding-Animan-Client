@@ -11,14 +11,25 @@ import {
   deleteCommentDB,
   editCommentDB,
   getCommentDB,
+  addCommentDB,
 } from '../redux/modules/comment';
 
-const Comment = () => {
+const Comment = (props) => {
   const dispatch = useDispatch();
-  const [comment, setComment] = React.useState('');
+  const reviewId = props.reviewId.reviewId;
+  console.log(reviewId);
+  const [comment, setComment] = React.useState();
+
+  React.useEffect(() => {
+    dispatch(getCommentDB(reviewId));
+  }, [reviewId]);
 
   const $comment = (event) => {
     setComment(event.target.value);
+  };
+
+  const addCommentBtn = () => {
+    dispatch(addCommentDB(comment, reviewId));
   };
 
   const deleteCommentBtn = () => {
@@ -92,6 +103,14 @@ const Comment = () => {
           }}
         />
       </Grid>
+      <Button
+        color="white"
+        bgColor="buttonColor"
+        padding="8px"
+        clickEvent={addCommentBtn}
+      >
+        댓글작성
+      </Button>
     </Grid>
   );
 };
