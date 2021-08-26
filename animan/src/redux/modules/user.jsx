@@ -53,7 +53,8 @@ export const logInCheck = () => {
         instance
           .get('/user/userinfo')
           .then((res) => {
-            dispatch(logCheck(res.data.user));
+            console.log(res);
+            dispatch(logCheck(res.data.username));
           })
           .catch((err) => {
             window.alert('로그인 체크 실패!');
@@ -106,7 +107,7 @@ const user = createSlice({
       },
       //로그인 체크
       logCheck: (state, action) => {
-        state.user_info = action.payload.username;
+        state.user_info = action.payload;
         state.is_login = true;
       },
       // 로그아웃

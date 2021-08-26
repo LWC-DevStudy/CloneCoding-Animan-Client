@@ -1,5 +1,21 @@
 // import
-import { createSlice } from "@reduxjs/toolkit";
+import instance from '../../shared/axios';
+import { createSlice } from '@reduxjs/toolkit';
+
+// 장바구니에 넣기
+export const addCartDB = (productId) => {
+  return function (dispatch, getState, { history }) {
+    instance
+      .post(`/cart/${productId}`, {})
+      .then((res) => {
+        dispatch(addCart());
+        window.alert('장바구니에 추가 되었습니다!');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
 
 //initialState
 const initialState = {
@@ -16,6 +32,9 @@ const cart = createSlice({
         addCart: (state, action) => {
             state.carts.push(action.payload)
             window.alert('메뉴가 추가되었습니다!')
+        },
+        getCart: (state, action) => {
+            state.carts = action.payload;
         },
         totalPrice: (state, action) => {
             state.price = action.payload
