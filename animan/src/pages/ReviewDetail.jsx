@@ -50,6 +50,13 @@ const ReviewDetail = (review, comment) => {
 
   return (
     <Grid width="550px" height="auto" margin="3% auto" border="solid 1px black">
+      <Button color="white" bgColor="buttonColor" padding="8px" margin="2%">
+        수정
+      </Button>
+      <Button color="white" bgColor="buttonColor" padding="8px">
+        삭제
+      </Button>
+
       <Grid>
         <Image src={reviewImage} />
       </Grid>
