@@ -5,7 +5,6 @@ import instance from '../../shared/axios';
 // axios
 // 특정 카테고리 메뉴 가져오기
 // /product/{category}
-// /product?category=${category}
 export const getCategoryDB = (category) => {
   return function (dispatch, getState, { history }) {
     instance
@@ -15,6 +14,22 @@ export const getCategoryDB = (category) => {
           return each.category === category;
         });
         dispatch(getCategoryDB(productList));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
+
+// 상품 상세 가져오기
+// /product/{productId}
+export const getOneProductDB = (productId) => {
+  return function (dispatch, getState, { history }) {
+    instance
+      .get(`/product/${productId}`)
+      .then((res) => {
+        let detailProduct = res.data;
+        dispatch(getOneProduct(detailProduct));
       })
       .catch((err) => {
         console.error(err);
@@ -35,9 +50,13 @@ const product = createSlice({
     getCategory: (state, action) => {
       state.product = action.payload;
     },
+
+    getOneProduct: (state, action) => {
+      state.list = action.payload;
+    },
   },
 });
 
-export const { getCategory } = product.actions;
+export const { getCategory, getOneProduct } = product.actions;
 
 export default product;

@@ -1,11 +1,17 @@
 // LIBRARY
 import React from 'react';
+import { history } from '../redux/configureStore';
+import { useDispatch, useSelector } from 'react-redux';
 // STYLE
-import styled, { css } from 'styled-components';
+import { css } from 'styled-components';
 // ELEMENTS
 import { Image, Grid } from '../elements/index';
 
 function ReviewCard({ review }) {
+  const dispatch = useDispatch();
+  const reviewId = review.reviewId;
+  console.log(reviewId);
+
   return (
     <Grid
       width="200px"
@@ -15,6 +21,9 @@ function ReviewCard({ review }) {
         return css`
           cursor: pointer;
         `;
+      }}
+      clickEvent={() => {
+        history.push(`/rdetail/${review.reviewId}`);
       }}
     >
       <Image src={review.reviewImage} />
