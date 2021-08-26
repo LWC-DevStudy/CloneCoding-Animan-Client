@@ -1,28 +1,21 @@
 // LIBRARY
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 // ELEMENTS
 import { Grid, Input, Button } from '../elements/index';
 
 // REDUX
-import review, {
+import {
   deleteCommentDB,
   editCommentDB,
   getCommentDB,
-} from '../redux/modules/review';
+} from '../redux/modules/comment';
 
-const Comment = (comment, review) => {
+const Comment = () => {
   const dispatch = useDispatch();
-  const [comments, setComment] = React.useState('');
-
-  const reviewId = useSelector((state) => state.review.list.reviewId);
-  console.log(reviewId);
-
-  React.useEffect(() => {
-    dispatch(getCommentDB());
-  }, []);
+  const [comment, setComment] = React.useState('');
 
   const $comment = (event) => {
     setComment(event.target.value);
@@ -78,6 +71,9 @@ const Comment = (comment, review) => {
             </Button>
           </LiStyle>
           <LiStyle>댓글222</LiStyle>
+          <LiStyle>댓글333</LiStyle>
+          <LiStyle>댓글444</LiStyle>
+          <LiStyle>댓글555</LiStyle>
         </UlStyle>
       </Grid>
 

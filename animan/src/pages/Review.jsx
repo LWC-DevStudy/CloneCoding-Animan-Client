@@ -16,6 +16,7 @@ import {
   getReview,
   getReviewDB,
 } from '../redux/modules/review';
+import { getCommentDB } from '../redux/modules/comment';
 
 const Review = () => {
   const dispatch = useDispatch();
