@@ -44,16 +44,16 @@ export const logInDB = ({ username, password }) => {
 };
 
 // 로그인 상태 확인
-export const logInCheck = ({ username }) => {
+export const logInCheck = () => {
     return function (dispatch, getState, { history }) {
         const token = getToken("token")
         if(token === null) {
         return;
         }
         instance
-          .get('/user/userinfo', { username })
+          .get('/user/userinfo')
           .then((res) => {
-            dispatch(logCheck(res.data));
+            dispatch(logCheck(res.data.user));
           })
           .catch((err) => {
             window.alert('로그인 체크 실패!');
