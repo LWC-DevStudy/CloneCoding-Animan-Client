@@ -41,9 +41,13 @@ function App() {
       <Route path="/wishList" exact component={WishList} />
       <Route path="/review" exact component={Review} />
       <Route path="/rdetail" exact component={ReviewDetail} />
+      <Route path="/rdetail/:reviewId" exact component={ReviewDetail} />
       <Route path="/write" exact component={ReviewWrite} />
       <Route path="/pdetail" exact component={ProductDetail} />
-      <Route path="/oauth/callback/kakao" component={OAuth2RedirectHandler}></Route>
+      <Route
+        path="/oauth/callback/kakao"
+        component={OAuth2RedirectHandler}
+      ></Route>
       <Footer />
     </ThemeProvider>
   );
