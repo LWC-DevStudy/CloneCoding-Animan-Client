@@ -13,7 +13,7 @@ import { Grid, Text, Image, Button } from '../elements/index';
 import Comment from '../components/Comment';
 
 // REDUX
-import comment, { addCommentDB, getCommentDB } from '../redux/modules/comment';
+import { getCommentDB } from '../redux/modules/comment';
 import review, {
   getOneReviewDB,
   deleteReviewDB,
@@ -21,37 +21,29 @@ import review, {
 
 const ReviewDetail = (review, comment) => {
   const dispatch = useDispatch();
+  const reviewId = review.match.params;
 
   const { reviewImage, reviewContent } = useSelector((state) => ({
     reviewImage: state.review.list.reviewImage,
     reviewContent: state.review.list.reviewContents,
   }));
-  console.log(reviewContent);
-  const reviewId = review.match.params;
+
   React.useEffect(() => {
     dispatch(getOneReviewDB(reviewId));
   }, []);
+
   const deleteBtn = () => {
     dispatch(deleteReviewDB(reviewId));
   };
 
   const [contents, setContent] = React.useState();
-  console.log(review);
 
-  const commentList = useSelector((state) => state.comment.list);
+  const commentList = useSelector((state) => state.comment);
   console.log(commentList);
 
   // React.useEffect(() => {
-  //   dispatch(getCommentDB());
+  //   dispatch(getCommentDB(reviewId));
   // }, []);
-
-  // const addCommentBtn = () => {
-  //   dispatch(addCommentDB(comment));
-  // };
-
-  React.useEffect(() => {
-    dispatch(getCommentDB(reviewId));
-  }, []);
 
   return (
     <Grid width="550px" height="auto" margin="3% auto" border="solid 1px black">
@@ -90,13 +82,13 @@ const ReviewDetail = (review, comment) => {
 
       <hr />
 
-      <Comment />
+      <Comment reviewId={reviewId} />
 
       {/* {commentList.map((c, idx) => {
         return <Comment key={idx} {...c} />;
       })} */}
 
-      <Grid
+      {/* <Grid
         width="70px"
         margin="2% auto"
         addstyle={() => {
@@ -104,16 +96,7 @@ const ReviewDetail = (review, comment) => {
             ${flexBox('space-between')}
           `;
         }}
-      >
-        <Button
-          color="white"
-          bgColor="buttonColor"
-          padding="8px"
-          // clickEvent={addCommentBtn}
-        >
-          댓글작성
-        </Button>
-      </Grid>
+      ></Grid> */}
     </Grid>
   );
 };
