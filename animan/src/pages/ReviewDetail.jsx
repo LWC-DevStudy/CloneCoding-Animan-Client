@@ -13,40 +13,41 @@ import { Grid, Text, Image, Button } from '../elements/index';
 import Comment from '../components/Comment';
 
 // REDUX
-import comment, { addCommentDB, getCommentDB } from '../redux/modules/comment';
+import comment, { addCommentDB, getCommentDB } from '../redux/modules/review';
 import review, {
   getOneReviewDB,
   deleteReviewDB,
 } from '../redux/modules/review';
 
-const ReviewDetail = (review, comment) => {
+const ReviewDetail = (review) => {
   const dispatch = useDispatch();
 
+  // 리뷰 상세
   const { reviewImage, reviewContent } = useSelector((state) => ({
     reviewImage: state.review.list.reviewImage,
     reviewContent: state.review.list.reviewContents,
   }));
-  console.log(reviewContent);
+
   const reviewId = review.match.params;
+
   React.useEffect(() => {
     dispatch(getOneReviewDB(reviewId));
   }, []);
+
   const deleteBtn = () => {
     dispatch(deleteReviewDB(reviewId));
   };
 
   const [contents, setContent] = React.useState();
-  console.log(review);
 
-  // const commentList = useSelector((state) => state.comment.list);
+  // 댓글
+  React.useEffect(() => {
+    dispatch(getCommentDB());
+  }, []);
 
-  // React.useEffect(() => {
-  //   dispatch(getCommentDB());
-  // }, []);
-
-  // const addCommentBtn = () => {
-  //   dispatch(addCommentDB(comment));
-  // };
+  const addCommentBtn = () => {
+    dispatch(addCommentDB(comment));
+  };
 
   return (
     <Grid width="550px" height="auto" margin="3% auto" border="solid 1px black">
@@ -85,7 +86,7 @@ const ReviewDetail = (review, comment) => {
 
       <hr />
 
-      <Comment />
+      <Comment reviewId={reviewId} />
 
       {/* {commentList.map((c, idx) => {
         return <Comment key={idx} {...c} />;
@@ -104,7 +105,7 @@ const ReviewDetail = (review, comment) => {
           color="white"
           bgColor="buttonColor"
           padding="8px"
-          // clickEvent={addCommentBtn}
+          clickEvent={addCommentBtn}
         >
           댓글작성
         </Button>
