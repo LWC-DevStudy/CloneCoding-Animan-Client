@@ -1,6 +1,7 @@
 // LIBRARY
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 
 // ROUTE
 import { Link } from 'react-router-dom';
@@ -14,7 +15,18 @@ import { Grid, Text } from '../elements/index';
 // COMPONENTS
 import ProductList from '../components/ProductList';
 
+// REDUX
+import { getCategoryDB } from '../redux/modules/product';
+
 const Main = () => {
+  const dispatch = useDispatch();
+  const product_list = useSelector((state) => state);
+  console.log(product_list);
+
+  React.useEffect(() => {
+    dispatch(getCategoryDB());
+  }, []);
+
   return (
     <Grid>
       <BackgroundImage />
@@ -118,6 +130,9 @@ const Main = () => {
       </Grid>
 
       <Grid margin="0 0 10% 0">
+        {/* {product_list.map((p, idx) => {
+          return <ProductList key={idx} {...p} />;
+        })} */}
         <ProductList />
       </Grid>
     </Grid>
