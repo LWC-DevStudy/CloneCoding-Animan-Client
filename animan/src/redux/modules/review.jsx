@@ -125,11 +125,11 @@ export const editReviewDB = (reviewId, reviewContents) => {
 export const deleteReviewDB = (reviewId) => {
   return function (dispatch, getState, { history }) {
     instance
-      .delete(`/review/${reviewId}`)
+      .delete(`/review/${reviewId.reviewId}`)
       .then((res) => {
         dispatch(deleteReview(reviewId));
-
         window.alert('게시물 삭제 완료');
+        history.push('/review');
       })
       .catch((err) => {
         console.log(err);
@@ -165,9 +165,6 @@ const review = createSlice({
         list: [...state.list, ...action.payload.content],
         start: action.payload.number,
       };
-      // state.list = action.payload.content;
-      // state.start = action.payload.number;
-      console.log(action.payload);
     },
 
     getOneReview: (state, action) => {
@@ -175,21 +172,11 @@ const review = createSlice({
     },
 
     editReview: (state, action) => {
-      const editList = state.list.map((review) => {
-        if (review.reviewId === action.reviewId) {
-          return action.review;
-        }
-        return review;
-      });
-      return { ...state, list: editList };
+      console.log('수정 요청 완료!');
     },
 
     deleteReview: (state, action) => {
-      const deleteList = state.list.filter(
-        (review) => review.reviewId !== action.reviewId
-      );
-
-      return { ...state, list: deleteList };
+      console.log('삭제 요청 완료!');
     },
   },
 });

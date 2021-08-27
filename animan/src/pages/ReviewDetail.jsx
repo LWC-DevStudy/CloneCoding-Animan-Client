@@ -17,6 +17,7 @@ import { getCommentDB } from '../redux/modules/comment';
 import review, {
   getOneReviewDB,
   deleteReviewDB,
+  editReviewDB,
 } from '../redux/modules/review';
 
 const ReviewDetail = (review, comment) => {
@@ -32,20 +33,25 @@ const ReviewDetail = (review, comment) => {
     dispatch(getOneReviewDB(reviewId));
   }, []);
 
-  const deleteBtn = () => {
+  const deleteReview = () => {
     dispatch(deleteReviewDB(reviewId));
   };
 
-  // React.useEffect(() => {
-  //   dispatch(getCommentDB(reviewId));
-  // }, []);
+  const editReview = () => {
+    dispatch(editReviewDB(reviewId));
+  };
 
   return (
     <Grid width="550px" height="auto" margin="3% auto" border="solid 1px black">
       <Button color="white" bgColor="buttonColor" padding="8px" margin="2%">
         수정
       </Button>
-      <Button color="white" bgColor="buttonColor" padding="8px">
+      <Button
+        color="white"
+        bgColor="buttonColor"
+        padding="8px"
+        clickEvent={deleteReview}
+      >
         삭제
       </Button>
 
