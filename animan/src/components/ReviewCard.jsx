@@ -1,15 +1,14 @@
 // LIBRARY
 import React from 'react';
 import { history } from '../redux/configureStore';
-import { useDispatch, useSelector } from 'react-redux';
+
 // STYLE
 import { css } from 'styled-components';
+
 // ELEMENTS
 import { Image, Grid } from '../elements/index';
 
 function ReviewCard({ review }) {
-  const dispatch = useDispatch();
-
   return (
     <Grid
       width="200px"

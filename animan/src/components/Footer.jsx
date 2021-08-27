@@ -1,15 +1,14 @@
 // LIBRARY
 import React from 'react';
+
 // STYLE
-import styled, { css } from 'styled-components';
-import { flexHoz } from '../shared/style';
+import styled from 'styled-components';
+
 // ICON
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
-//ELEMENTS
-import { Grid, Text } from '../elements';
 
 function Footer() {
   return (
