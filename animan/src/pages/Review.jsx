@@ -27,7 +27,7 @@ const Review = () => {
       reviewList: state.review.list,
       reviewId: state.review,
     }),
-    shallowEqual
+    shallowEqual,
   );
   console.log(reviewId);
   const getMoreReview = () => {
