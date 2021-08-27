@@ -19,7 +19,7 @@ import review, {
   deleteReviewDB,
 } from '../redux/modules/review';
 
-const ReviewDetail = (review, comment) => {
+const ReviewDetail = (review) => {
   const dispatch = useDispatch();
   const reviewId = review.match.params;
 

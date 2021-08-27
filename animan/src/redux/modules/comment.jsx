@@ -40,43 +40,9 @@ export const getCommentDB = (reviewId) => {
   };
 };
 
-// 댓글 삭제
-export const deleteCommentDB = (commentId) => {
-  return function (dispatch, getState, { history }) {
-    instance
-      .delete(`/comment/${commentId}`)
-      .then((res) => {
-        dispatch(deleteComment(commentId));
-        history.replace('/rdetail');
-        window.alert('댓글을 삭제하였습니다.');
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-};
-
-// 댓글 수정
-export const editCommentDB = (commentId, commentContents) => {
-  return function (dispatch, getState, { history }) {
-    instance
-      .put(`/comment/${commentId}`, {
-        commentId: commentId,
-        commentContents: commentContents,
-      })
-      .then((res) => {
-        dispatch(editComment(commentId, commentContents));
-        history.replace('/');
-        window.alert('댓글을 수정하였습니다.');
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-};
-
 const initialState = {
   list: [],
+  // comment: [],
 };
 
 const comment = createSlice({
@@ -85,32 +51,15 @@ const comment = createSlice({
   reducers: {
     addComment: (state, action) => {
       const comments = action.payload.comments;
-      // console.log(comments);
       state.list.push(comments);
-      // console.log(comments);
-      // return { ...state, list: comments };
     },
 
     getComment: (state, action) => {
       state.list = action.payload;
     },
-
-    deleteComment: (state, action) =>
-      state.filter((comment) => comment.commentId !== action.payload),
-  },
-
-  editComment: (state, action) => {
-    const editList = state.list.map((comment) => {
-      if (comment.commentId === action.commentId) {
-        return action.comment;
-      }
-      return comment;
-    });
-    return { ...state, list: editList };
   },
 });
 
-export const { addComment, getComment, deleteComment, editComment } =
-  comment.actions;
+export const { addComment, getComment } = comment.actions;
 
 export default comment;
