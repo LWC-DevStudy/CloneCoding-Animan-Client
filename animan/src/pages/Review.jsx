@@ -29,7 +29,7 @@ const Review = () => {
       reviewList: state.review.list,
       reviewId: state.review,
     }),
-    shallowEqual
+    shallowEqual,
   );
   const getMoreReview = () => {
     dispatch(getMoreReviewDB());

@@ -1,10 +1,13 @@
 // LIBRARY
 import React from 'react';
-// STYLE
 import styled, { css } from 'styled-components';
-import { flexBox, flexHoz, flexVer } from '../shared/style';
+
+// STYLE
+import { flexHoz } from '../shared/style';
+
 // ELEMENTS
 import { Grid, Text } from '../elements/index';
+
 // COMPONENTS
 import ProductCard from '../components/ProductCard';
 
