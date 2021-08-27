@@ -12,6 +12,8 @@ import ReviewCard from '../components/ReviewCard';
 // FUNCTION
 import InfinityScroll from '../shared/InfinityScroll';
 import {
+  deleteReviewDB,
+  editReviewDB,
   getMoreReviewDB,
   getReview,
   getReviewDB,
@@ -27,9 +29,8 @@ const Review = () => {
       reviewList: state.review.list,
       reviewId: state.review,
     }),
-    shallowEqual
+    shallowEqual,
   );
-  console.log(reviewId);
   const getMoreReview = () => {
     dispatch(getMoreReviewDB());
   };

@@ -5,14 +5,13 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { borderBox, flexBox, flexHoz } from '../shared/style';
 
-// SHARED
-import { removeToken } from '../shared/token';
-
 // ROUTE
 import { Link } from 'react-router-dom';
 
-//ELEMENTS
+// ELEMENTS
 import { Grid, Text } from '../elements/index';
+
+// IMAGE
 import Logo from '../shared/images/MainImage.png';
 
 function Header() {
