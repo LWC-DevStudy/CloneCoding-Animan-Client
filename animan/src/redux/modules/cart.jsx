@@ -5,12 +5,14 @@ import { createSlice } from '@reduxjs/toolkit';
 // 장바구니에 넣기
 export const addCartDB = (productId) => {
   return function (dispatch, getState, { history }) {
+    const userName = getState().user.username;
     const productImg = getState().product.productImage;
     // const productPrice = getState().product.price;
     // const productQuantity = getState().product.cartQuantity;
     const productId = getState().product.productId;
     const productWished = getState().product.isWished;
     const cartInfo = {
+      userName: userName,
       // cartPrice: productPrice, 
       // cartQuantity: productQuantity, 
       cartImage: productImg, 
