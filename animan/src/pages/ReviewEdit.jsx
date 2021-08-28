@@ -6,10 +6,10 @@ import styled from 'styled-components';
 // ELEMENTS
 import { Grid } from '../elements/index';
 // REDUX
-import { addReviewDB } from '../redux/modules/review';
+import { editReviewDB } from '../redux/modules/review';
 import { imgActions } from '../redux/modules/image';
 
-const ReviewWrite = () => {
+const ReviewEdit = () => {
   const dispatch = useDispatch();
 
   const [review, setReview] = React.useState();
@@ -18,8 +18,8 @@ const ReviewWrite = () => {
     setReview(e.target.value);
   };
 
-  const writeBtn = () => {
-    dispatch(addReviewDB(review));
+  const editBtn = () => {
+    dispatch(editReviewDB(review));
   };
 
   // s3
@@ -42,7 +42,7 @@ const ReviewWrite = () => {
           style={{ display: 'none' }}
         />
         <Textarea onChange={$contents} />
-        <WriteButton onClick={writeBtn}>작성하기</WriteButton>
+        <WriteButton onClick={editBtn}>작성하기</WriteButton>
       </Grid>
     </React.Fragment>
   );
@@ -91,4 +91,4 @@ const Textarea = styled.textarea`
   display: block;
   margin: 20px auto 20px auto;
 `;
-export default ReviewWrite;
+export default ReviewEdit;
