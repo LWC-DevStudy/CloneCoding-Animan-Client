@@ -13,7 +13,7 @@ export const addCommentDB = (commentContents, reviewId) => {
       .then((res) => {
         dispatch(addComment(commentContents));
         window.alert('댓글 달아주셔서 감사합니다!');
-        history.push('/review');
+        history.push(`/rdetail/${reviewId}`);
       })
       .catch((err) => {
         console.error(err);
@@ -24,6 +24,8 @@ export const addCommentDB = (commentContents, reviewId) => {
 // 댓글 불러오기
 export const getCommentDB = (reviewId) => {
   return function (dispatch, getState, { history }) {
+    const token = getToken('token');
+    instance.defaults.headers.common['authorization'] = `${token}`;
     instance
       .get(`/comment/${reviewId}`)
       .then((res) => {
@@ -47,7 +49,7 @@ const comment = createSlice({
   initialState,
   reducers: {
     addComment: (state, action) => {
-      const comments = action.payload.comments;
+      const comments = action.payload;
       state.list.push(comments);
     },
 
