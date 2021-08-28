@@ -6,6 +6,8 @@ import instance from '../../shared/axios';
 // /product/{category}
 export const getCategoryDB = (category, product) => {
   return function (dispatch, getState, { history }) {
+    const product_list = getState().product;
+    console.log(product_list);
     instance
       .get(`/product/${category}`, { product: product })
       .then((res) => {

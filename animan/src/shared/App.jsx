@@ -25,10 +25,11 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 // REDUX
-import { logInCheck } from '../redux/modules/user'
+import { logInCheck } from '../redux/modules/user';
 
 // SHARED
 import OAuth2RedirectHandler from './OAuth2RedirectHandler';
+import ReviewEdit from '../pages/ReviewEdit';
 
 function App(props) {
   const dispatch = useDispatch();
@@ -36,10 +37,10 @@ function App(props) {
 
   React.useEffect(() => {
     //로그인 상태 확인
-    if(!is_login) {
+    if (!is_login) {
       dispatch(logInCheck());
     }
-  },[])
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -56,6 +57,7 @@ function App(props) {
       <Route path="/rdetail/:reviewId" exact component={ReviewDetail} />
       <Route path="/write" exact component={ReviewWrite} />
       <Route path="/pdetail" exact component={ProductDetail} />
+      <Route path="/reviewedit" exact component={ReviewEdit} />
       <Route
         path="/oauth/callback/kakao"
         component={OAuth2RedirectHandler}

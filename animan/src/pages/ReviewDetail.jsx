@@ -2,7 +2,7 @@
 import React from 'react';
 import { css } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { history } from '../redux/configureStore';
 // STYLE
 import { flexBox } from '../shared/style';
 
@@ -13,12 +13,8 @@ import { Grid, Text, Image, Button } from '../elements/index';
 import Comment from '../components/Comment';
 
 // REDUX
-import { getCommentDB } from '../redux/modules/comment';
-import review, {
-  getOneReviewDB,
-  deleteReviewDB,
-  editReviewDB,
-} from '../redux/modules/review';
+
+import { getOneReviewDB, deleteReviewDB } from '../redux/modules/review';
 
 const ReviewDetail = (review) => {
   const dispatch = useDispatch();
@@ -35,10 +31,6 @@ const ReviewDetail = (review) => {
 
   const deleteReview = () => {
     dispatch(deleteReviewDB(reviewId));
-  };
-
-  const editReview = () => {
-    dispatch(editReviewDB(reviewId));
   };
 
   return (
@@ -80,24 +72,8 @@ const ReviewDetail = (review) => {
       >
         <Text>{reviewContent}</Text>
       </Grid>
-
       <hr />
-
       <Comment reviewId={reviewId} />
-
-      {/* {commentList.map((c, idx) => {
-        return <Comment key={idx} {...c} />;
-      })} */}
-
-      {/* <Grid
-        width="70px"
-        margin="2% auto"
-        addstyle={() => {
-          return css`
-            ${flexBox('space-between')}
-          `;
-        }}
-      ></Grid> */}
     </Grid>
   );
 };

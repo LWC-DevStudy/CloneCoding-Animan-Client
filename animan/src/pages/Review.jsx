@@ -68,16 +68,22 @@ const Review = () => {
             `;
           }}
         >
-          {reviewList.map((review, idx) => (
-            <InfinityScroll
-              next={getMoreReview}
-              index={idx}
-              length={reviewList.length}
-              key={review.reviewId}
-            >
-              <ReviewCard review={review} />
-            </InfinityScroll>
-          ))}
+          {reviewList.length ? (
+            reviewList.map((review, idx) => {
+              return (
+                <InfinityScroll
+                  next={getMoreReview}
+                  index={idx}
+                  length={reviewList.length}
+                  key={review.reviewId}
+                >
+                  <ReviewCard review={review} />
+                </InfinityScroll>
+              );
+            })
+          ) : (
+            <></>
+          )}
         </Grid>
       </Grid>
     </React.Fragment>
