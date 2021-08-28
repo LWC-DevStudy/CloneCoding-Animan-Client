@@ -8,17 +8,17 @@ import { Grid, Input, Button } from '../elements/index';
 
 // REDUX
 import { getCommentDB, addCommentDB } from '../redux/modules/comment';
+import CommentList from './CommentList';
 
 const Comment = (props) => {
   const dispatch = useDispatch();
   const reviewId = props.reviewId.reviewId;
   const [comments, setComment] = React.useState();
   const commentList = useSelector((state) => state.comment.list);
-  console.log(commentList);
 
   React.useEffect(() => {
     dispatch(getCommentDB(reviewId));
-  }, [reviewId]);
+  }, [reviewId, commentList.length]);
 
   const $comment = (event) => {
     setComment(event.target.value);
@@ -37,11 +37,9 @@ const Comment = (props) => {
         margin="0 auto"
         padding="0"
       >
-        <UlStyle>
-          {commentList.map((comment, idx) => (
-            <LiStyle key={idx}>{comment.commentContents}</LiStyle>
-          ))}
-        </UlStyle>
+        {commentList.map((comment, idx) => {
+          return <CommentList key={idx} comment={comment} />;
+        })}
       </Grid>
 
       <Grid margin="0 auto" width="500px">

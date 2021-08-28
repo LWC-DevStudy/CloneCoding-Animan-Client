@@ -27,7 +27,7 @@ const ReviewDetail = (review) => {
 
   React.useEffect(() => {
     dispatch(getOneReviewDB(reviewId));
-  }, []);
+  }, [reviewImage]);
 
   const deleteReview = () => {
     dispatch(deleteReviewDB(reviewId));

@@ -11,14 +11,7 @@ import { flexHoz } from '../shared/style';
 import ReviewCard from '../components/ReviewCard';
 // FUNCTION
 import InfinityScroll from '../shared/InfinityScroll';
-import {
-  deleteReviewDB,
-  editReviewDB,
-  getMoreReviewDB,
-  getReview,
-  getReviewDB,
-} from '../redux/modules/review';
-import { getCommentDB } from '../redux/modules/comment';
+import { getMoreReviewDB, getReviewDB } from '../redux/modules/review';
 
 const Review = () => {
   const dispatch = useDispatch();
@@ -29,7 +22,7 @@ const Review = () => {
       reviewList: state.review.list,
       reviewId: state.review,
     }),
-    shallowEqual,
+    shallowEqual
   );
   const getMoreReview = () => {
     dispatch(getMoreReviewDB());

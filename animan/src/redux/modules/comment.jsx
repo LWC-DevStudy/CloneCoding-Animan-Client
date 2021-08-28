@@ -12,8 +12,6 @@ export const addCommentDB = (commentContents, reviewId) => {
       .post(`/comment/${reviewId}`, { commentContents })
       .then((res) => {
         dispatch(addComment(commentContents));
-        window.alert('댓글 달아주셔서 감사합니다!');
-        history.push('/review');
       })
       .catch((err) => {
         console.error(err);
@@ -47,7 +45,7 @@ const comment = createSlice({
   initialState,
   reducers: {
     addComment: (state, action) => {
-      const comments = action.payload.comments;
+      const comments = action.payload;
       state.list.push(comments);
     },
 
