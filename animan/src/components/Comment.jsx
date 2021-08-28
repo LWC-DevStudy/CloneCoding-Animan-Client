@@ -18,7 +18,7 @@ const Comment = (props) => {
 
   React.useEffect(() => {
     dispatch(getCommentDB(reviewId));
-  }, [reviewId]);
+  }, [reviewId, commentList.length]);
 
   const $comment = (event) => {
     setComment(event.target.value);
