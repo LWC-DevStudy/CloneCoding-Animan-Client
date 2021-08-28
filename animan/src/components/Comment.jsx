@@ -14,6 +14,7 @@ const Comment = (props) => {
   const reviewId = props.reviewId.reviewId;
   const [comments, setComment] = React.useState();
   const commentList = useSelector((state) => state.comment.list);
+  console.log(commentList);
 
   React.useEffect(() => {
     dispatch(getCommentDB(reviewId));
