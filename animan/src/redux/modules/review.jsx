@@ -27,7 +27,7 @@ export const addReviewDB = (post) => {
             .catch((err) => {
               console.log(err);
             });
-        })
+        }),
       );
     }
     return;

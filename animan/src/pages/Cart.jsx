@@ -1,19 +1,27 @@
 // LIBRARY
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { css } from 'styled-components';
 
 //ELEMENTS
 import { Image, Grid, Button, Input } from '../elements/index';
 
 // REDUX
-import { deleteCart } from '../redux/modules/cart';
+import { getCartDB, deleteCart } from '../redux/modules/cart';
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const cartList = useSelector((state) => (state.cart.carts));
+  console.log(cartList);
+
+
   const delBtn = () => {
     dispatch(deleteCart());
   };
+  React.useEffect(() => {
+      dispatch(getCartDB());
+  }, []);
+  
   return (
     <Grid margin="0 25vw" width="50vw">
       <h1 style={{ fontSize: '24px', fontWeight: '400', display: 'flex' }}>
@@ -69,22 +77,23 @@ const Cart = () => {
           </tr>
         </thead>
         <tbody style={{ fontSize: '12px' }}>
-          <tr>
+          {cartList.map((cart, idx) => (
+            <tr>
             <td style={{ borderBottom: '1px solid #ddd' }}>
               <Input type="checkbox"></Input>
             </td>
             <td style={{ display: 'flex', borderBottom: '1px solid #ddd' }}>
               <Image
                 style={{ padding: '0', width: '100px', height: '100px' }}
-                src="https://cdn.imweb.me/thumbnail/20210726/7f0166fb8e45c.png"
+                src={cart.cartImage}
               />
-              <div style={{ margin: '30px' }}>titleasdasdasdasdasdasd</div>
+              <div style={{ margin: '30px' }}>{cart.cartId}</div>
             </td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>하트</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>2</td>
+            <td style={{ borderBottom: '1px solid #ddd' }}>{cart.cartWished}하트</td>
+            <td style={{ borderBottom: '1px solid #ddd' }}>{cart.cartQuantity}</td>
             <td style={{ borderBottom: '1px solid #ddd' }}>택배</td>
             <td style={{ borderBottom: '1px solid #ddd' }}>3000원</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>price</td>
+            <td style={{ borderBottom: '1px solid #ddd' }}>{cart.cartPrice}</td>
             <td style={{ borderBottom: '1px solid #ddd' }}>
               <Button
                 margin="4px"
@@ -111,236 +120,8 @@ const Cart = () => {
               </Button>
             </td>
           </tr>
-          <tr>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Input type="checkbox"></Input>
-            </td>
-            <td style={{ display: 'flex', borderBottom: '1px solid #ddd' }}>
-              <Image
-                style={{ padding: '0', width: '100px', height: '100px' }}
-                src="https://cdn.imweb.me/thumbnail/20210726/7f0166fb8e45c.png"
-              />
-              <div style={{ margin: '30px' }}>titleasdasdasdasdasdasd</div>
-            </td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>하트</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>2</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>택배</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>3000원</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>price</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Button
-                margin="4px"
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                주문
-              </Button>
-              <Button
-                width="50px"
-                clickEvent={delBtn}
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                삭제
-              </Button>
-            </td>
-          </tr>
+          ))}
 
-          <tr>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Input type="checkbox"></Input>
-            </td>
-            <td style={{ display: 'flex', borderBottom: '1px solid #ddd' }}>
-              <Image
-                style={{ padding: '0', width: '100px', height: '100px' }}
-                src="https://cdn.imweb.me/thumbnail/20210726/7f0166fb8e45c.png"
-              />
-              <div style={{ margin: '30px' }}>titleasdasdasdasdasdasd</div>
-            </td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>하트</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>2</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>택배</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>3000원</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>price</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Button
-                margin="4px"
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                주문
-              </Button>
-              <Button
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                삭제
-              </Button>
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Input type="checkbox"></Input>
-            </td>
-            <td style={{ display: 'flex', borderBottom: '1px solid #ddd' }}>
-              <Image
-                style={{ padding: '0', width: '100px', height: '100px' }}
-                src="https://cdn.imweb.me/thumbnail/20210726/7f0166fb8e45c.png"
-              />
-              <div style={{ margin: '30px' }}>titleasdasdasdasdasdasd</div>
-            </td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>하트</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>2</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>택배</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>3000원</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>price</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Button
-                margin="4px"
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                주문
-              </Button>
-              <Button
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                삭제
-              </Button>
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Input type="checkbox"></Input>
-            </td>
-            <td style={{ display: 'flex', borderBottom: '1px solid #ddd' }}>
-              <Image
-                style={{ padding: '0', width: '100px', height: '100px' }}
-                src="https://cdn.imweb.me/thumbnail/20210726/7f0166fb8e45c.png"
-              />
-              <div style={{ margin: '30px' }}>titleasdasdasdasdasdasd</div>
-            </td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>하트</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>2</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>택배</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>3000원</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>price</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Button
-                margin="4px"
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                주문
-              </Button>
-              <Button
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                삭제
-              </Button>
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Input type="checkbox"></Input>
-            </td>
-            <td style={{ display: 'flex', borderBottom: '1px solid #ddd' }}>
-              <Image
-                style={{ padding: '0', width: '100px', height: '100px' }}
-                src="https://cdn.imweb.me/thumbnail/20210726/7f0166fb8e45c.png"
-              />
-              <div style={{ margin: '30px' }}>titleasdasdasdasdasdasd</div>
-            </td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>하트</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>2</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>택배</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>3000원</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>price</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Button
-                margin="4px"
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                주문
-              </Button>
-              <Button
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                삭제
-              </Button>
-            </td>
-          </tr>
-
-          <tr style={{ fontSize: '14px', height: '70px' }}>
-            <td colSpan={5}>aasdasdas</td>
-            <td>
-              상품가격
-              <br />
-              배송비
-            </td>
-            <td>
-              price
-              <br />
-              3000원
-            </td>
-            <td></td>
-          </tr>
 
           <tr>
             <td style={{ textAlign: 'left' }} colSpan={5}>
