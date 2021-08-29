@@ -27,7 +27,7 @@ export const addReviewDB = (post) => {
             .catch((err) => {
               console.log(err);
             });
-        }),
+        })
       );
     }
     return;
@@ -105,19 +105,28 @@ export const getOneReviewDB = (reviewId = '') => {
 // 리뷰 수정
 export const editReviewDB = (reviewId, reviewContents) => {
   return function (dispatch, getState, { history }) {
-    instance
-      .put(`/review/${reviewId}`, {
-        reviewId: reviewId,
-        reviewContents: reviewContents,
-      })
-      .then((res) => {
-        window.alert('게시글 수정 완료');
-        history.replace('/');
-      })
-      .catch((err) => {
-        window.alert(reviewId, reviewContents);
-        console.log(err);
-      });
+    const imgFile = getState().image.file;
+    if (imgFile.length) {
+      dispatch(
+        imgActions.uploadImageDB(() => {
+          const imageUrl = getState().image.imageUrl;
+          instance
+            .put(`/review/${reviewId}`, {
+              reviewId: reviewId,
+              reviewContents: reviewContents,
+              reviewImage: imageUrl,
+            })
+            .then((res) => {
+              window.alert('게시글 수정 완료');
+              history.replace(`/review`);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        })
+      );
+    }
+    return;
   };
 };
 
