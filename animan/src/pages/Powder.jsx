@@ -18,7 +18,7 @@ const Powder = () => {
   const dispatch = useDispatch();
   const powder = 'powder';
   const productPowder = useSelector((state) =>
-    state.product.list ? state.product.list : undefined
+    state.product.list ? state.product.list : Array(0, 2, 34)
   );
   console.log(productPowder);
 
@@ -54,7 +54,7 @@ const Powder = () => {
           `;
         }}
       >
-        {productPowder ? (
+        {productPowder.length ? (
           productPowder.map((product, idx) => {
             return <ProductCard key={idx} {...product} />;
           })

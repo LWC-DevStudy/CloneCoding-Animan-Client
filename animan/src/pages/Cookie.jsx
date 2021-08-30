@@ -20,7 +20,7 @@ const Cookie = () => {
   const dispatch = useDispatch();
   const cookie = 'cookie';
   const productCookie = useSelector((state) =>
-    state.product.list ? state.product.list : undefined
+    state.product.list ? state.product.list : Array(0, 2, 34)
   );
   console.log(productCookie);
 
