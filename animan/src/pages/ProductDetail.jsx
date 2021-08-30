@@ -17,25 +17,23 @@ const ProductDetail = (product) => {
   const productList = useSelector((state) => state.product.list);
   const dispatch = useDispatch();
   const productId = product.match.params;
-  
 
-  const [count, setCount] = React.useState(0)
+  const [count, setCount] = React.useState(0);
   const plusCount = () => {
-    setCount(count + 1)
-  }
+    setCount(count + 1);
+  };
   const minusCount = () => {
     if (count > 0) {
-      setCount(count - 1)
+      setCount(count - 1);
     }
-  }
+  };
 
   React.useEffect(() => {
     dispatch(getOneProductDB(productId.productId));
-  },[]);
-  
+  }, []);
 
   if (!productList) {
-    return <></>
+    return <></>;
   }
   return (
     <Grid
@@ -107,7 +105,13 @@ const ProductDetail = (product) => {
                 >
                   -
                 </Button>
-                <Input type="text" width="30px" height="28.5px" disabled value={count}></Input>
+                <Input
+                  type="text"
+                  width="30px"
+                  height="28.5px"
+                  disabled
+                  value={count}
+                ></Input>
                 <Button
                   width="30px"
                   clickEvent={plusCount}
@@ -123,7 +127,7 @@ const ProductDetail = (product) => {
                 </Button>
               </Grid>
               <Text width="100px" margin="7px 0">
-              {productList.price*count}원
+                {productList.price * count}원
               </Text>
             </Grid>
 
@@ -136,7 +140,7 @@ const ProductDetail = (product) => {
               }}
             >
               <Text>총 상품금액({count}개)</Text>
-              <Text>{productList.price*count}원</Text>
+              <Text>{productList.price * count}원</Text>
             </Grid>
             <Grid>
               <Button
@@ -155,7 +159,7 @@ const ProductDetail = (product) => {
               <Button
                 margin="4px"
                 width="173px"
-                clickEvent={addCartDB(productList.price*count,count)}
+                clickEvent={addCartDB(productList.price * count, count)}
                 addstyle={() => {
                   return css`
                     border: 1px solid lightgray;

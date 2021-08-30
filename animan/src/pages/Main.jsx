@@ -22,8 +22,9 @@ const Main = () => {
   const dispatch = useDispatch();
   const all = 'all';
   const productList = useSelector((state) =>
-    state.product.list ? state.product.list : undefined
+    state.product.list ? state.product.list : Array(0, 2, 34)
   );
+  console.log(productList);
 
   React.useEffect(() => {
     dispatch(getCategoryDB(all));
@@ -141,7 +142,7 @@ const Main = () => {
           `;
         }}
       >
-        {productList ? (
+        {productList.length ? (
           productList.map((product, idx) => {
             return <ProductCard key={idx} {...product} />;
           })
