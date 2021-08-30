@@ -13,8 +13,10 @@ import { Grid, Text, Image, Button } from '../elements/index';
 import Comment from '../components/Comment';
 
 // REDUX
-
 import { getOneReviewDB, deleteReviewDB } from '../redux/modules/review';
+
+// ROUTE
+import { Link } from 'react-router-dom';
 
 const ReviewDetail = (review) => {
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ const ReviewDetail = (review) => {
 
   React.useEffect(() => {
     dispatch(getOneReviewDB(reviewId));
-  }, []);
+  }, [reviewImage]);
 
   const deleteReview = () => {
     dispatch(deleteReviewDB(reviewId));
@@ -35,9 +37,11 @@ const ReviewDetail = (review) => {
 
   return (
     <Grid width="550px" height="auto" margin="3% auto" border="solid 1px black">
-      <Button color="white" bgColor="buttonColor" padding="8px" margin="2%">
-        수정
-      </Button>
+      <Link to="/reviewedit">
+        <Button color="white" bgColor="buttonColor" padding="8px" margin="2%">
+          수정
+        </Button>
+      </Link>
       <Button
         color="white"
         bgColor="buttonColor"
