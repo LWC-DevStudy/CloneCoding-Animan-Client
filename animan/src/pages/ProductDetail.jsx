@@ -1,6 +1,6 @@
 // LIBRARY
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // STYLE
 import { flexBox } from '../shared/style';
@@ -11,11 +11,13 @@ import { Image, Grid, Text, Button, Input } from '../elements/index';
 
 // REDUX
 import { getOneProductDB } from '../redux/modules/product';
+import { addCartDB } from '../redux/modules/cart';
 
 const ProductDetail = (product) => {
-  const productId = product.productId;
+  const productList = useSelector((state) => state.product.list);
   const dispatch = useDispatch();
-  console.log(productId);
+  const productId = product.match.params;
+  
 
   const [count, setCount] = React.useState(0)
   const plusCount = () => {
@@ -28,9 +30,13 @@ const ProductDetail = (product) => {
   }
 
   React.useEffect(() => {
-    dispatch(getOneProductDB(productId));
-  });
+    dispatch(getOneProductDB(productId.productId));
+  },[]);
+  
 
+  if (!productList) {
+    return <></>
+  }
   return (
     <Grid
       margin="0 25vw 300px"
@@ -42,7 +48,7 @@ const ProductDetail = (product) => {
         `;
       }}
     >
-      <Text margin="0 0 0 40px">Home title</Text>
+      <Text margin="0 0 0 40px">Home {productList.title}</Text>
       <Grid
         addstyle={() => {
           return css`
@@ -53,12 +59,12 @@ const ProductDetail = (product) => {
         <Grid width="350px" margin="30px">
           <Image
             style={{ height: '220px', width: '350px' }}
-            src="https://cdn.imweb.me/thumbnail/20210726/af4b97e2e38d4.png"
+            src={productList.productImage}
           />
         </Grid>
         <Grid width="370px">
-          <Text>title</Text>
-          <Text>30000원</Text>
+          <Text>{productList.title}</Text>
+          <Text>{productList.price}원</Text>
           <Text>제조사 애니먼협력사</Text>
           <Text>
             배송비 3,000원 (50,000원 이상 무료배송) | 도서산간 배송비 추가
@@ -117,7 +123,7 @@ const ProductDetail = (product) => {
                 </Button>
               </Grid>
               <Text width="100px" margin="7px 0">
-              {30000*count}원
+              {productList.price*count}원
               </Text>
             </Grid>
 
@@ -130,7 +136,7 @@ const ProductDetail = (product) => {
               }}
             >
               <Text>총 상품금액({count}개)</Text>
-              <Text>{30000*count}원</Text>
+              <Text>{productList.price*count}원</Text>
             </Grid>
             <Grid>
               <Button
@@ -149,6 +155,7 @@ const ProductDetail = (product) => {
               <Button
                 margin="4px"
                 width="173px"
+                clickEvent={addCartDB(productList.price*count,count)}
                 addstyle={() => {
                   return css`
                     border: 1px solid lightgray;

@@ -10,9 +10,9 @@ function ProductCard(props) {
     <Grid
       width="370px"
       margin="30px"
-      // clickEvent={() => {
-      //   history.push(`/pdetail/${product.productId}`);
-      // }}
+      clickEvent={() => {
+        history.push(`/pdetail/${props.productId}`);
+      }}
     >
       <Image src={props.productImage} />
       <Text color="black" fontWeight="bold" style={{ textAlign: 'center' }}>

@@ -56,7 +56,7 @@ const Cookie = () => {
           `;
         }}
       >
-        {productCookie ? (
+        {productCookie.length ? (
           productCookie.map((product, idx) => {
             return <ProductCard key={idx} {...product} />;
           })

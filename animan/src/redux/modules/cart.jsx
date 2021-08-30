@@ -9,14 +9,14 @@ export const addCartDB = (productId) => {
     const productImg = getState().product.productImage;
     // const productPrice = getState().product.price;
     // const productQuantity = getState().product.cartQuantity;
-    const productId = getState().product.productId;
+    const _productId = getState().product.productId;
     const productWished = getState().product.isWished;
     const cartInfo = {
       userName: userName,
       // cartPrice: productPrice, 
       // cartQuantity: productQuantity, 
       cartImage: productImg, 
-      cartId: productId, 
+      cartId: _productId, 
       cartWished: productWished,
     }
     instance

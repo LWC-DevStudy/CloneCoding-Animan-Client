@@ -56,7 +56,7 @@ const Shop = () => {
           `;
         }}
       >
-        {productList ? (
+        {productList.length ? (
           productList.map((product, idx) => {
             return <ProductCard key={idx} {...product} />;
           })
