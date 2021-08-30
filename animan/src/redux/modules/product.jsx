@@ -42,9 +42,10 @@ export const getCategoryDB = (category) => {
 export const getOneProductDB = (productId) => {
   return function (dispatch, getState, { history }) {
     instance
-      .get(`/product/${productId}`)
+      .get(`/product/id/${productId}`)
       .then((res) => {
         let detailProduct = res.data;
+        console.log(detailProduct);
         dispatch(getOneProduct(detailProduct));
       })
       .catch((err) => {
