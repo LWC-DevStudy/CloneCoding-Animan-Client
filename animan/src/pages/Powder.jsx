@@ -47,7 +47,8 @@ const Powder = () => {
       <Grid
         addstyle={() => {
           return css`
-            ${flexBox()}
+            ${flexBox()};
+            cursor: pointer;
           `;
         }}
       >
