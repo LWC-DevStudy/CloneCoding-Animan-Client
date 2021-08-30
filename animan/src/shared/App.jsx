@@ -19,6 +19,8 @@ import Review from '../pages/Review';
 import ReviewDetail from '../pages/ReviewDetail';
 import ReviewWrite from '../pages/ReviewWrite';
 import ProductDetail from '../pages/ProductDetail';
+import Powder from '../pages/Powder';
+import Cookie from '../pages/Cookie';
 
 // COMPONENTS
 import Header from '../components/Header';
@@ -50,6 +52,8 @@ function App(props) {
       <Route path="/register" exact component={Register} />
       <Route path="/registerselect" exact component={RegisterSelect} />
       <Route path="/shop" exact component={Shop} />
+      <Route path="/powder" exact component={Powder} />
+      <Route path="/cookie" exact component={Cookie} />
       <Route path="/cart" exact component={Cart} />
       <Route path="/wishList" exact component={WishList} />
       <Route path="/review" exact component={Review} />

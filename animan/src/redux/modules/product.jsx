@@ -4,20 +4,14 @@ import instance from '../../shared/axios';
 
 // 특정 카테고리 메뉴 가져오기
 // /product/{category}
-export const getCategoryDB = (category, product) => {
+export const getCategoryDB = (category) => {
   return function (dispatch, getState, { history }) {
-    const product_list = getState().product;
-    console.log(product_list);
     instance
-      .get(`/product/${category}`, { product: product })
+      .get(`/product/category/${category}`)
       .then((res) => {
         let productList = res.data;
-        console.log(productList);
-        // let categoryList = res.data.product.filter((each) => {
-        //   return each.category === category;
-        // });
-        // dispatch(getCategoryDB(categoryList));
-        dispatch(getCategoryDB(productList));
+        // console.log(productList);
+        dispatch(getCategory(productList));
       })
       .catch((err) => {
         console.error(err);
