@@ -17,7 +17,9 @@ import { flexBox } from '../shared/style';
 const Powder = () => {
   const dispatch = useDispatch();
   const powder = 'powder';
-  const productPowder = useSelector((state) => state.product.list);
+  const productPowder = useSelector((state) =>
+    state.product.list ? state.product.list : undefined
+  );
   console.log(productPowder);
 
   React.useEffect(() => {
@@ -52,7 +54,7 @@ const Powder = () => {
           `;
         }}
       >
-        {productPowder.length ? (
+        {productPowder ? (
           productPowder.map((product, idx) => {
             return <ProductCard key={idx} {...product} />;
           })
