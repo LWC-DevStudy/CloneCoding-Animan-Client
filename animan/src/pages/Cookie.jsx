@@ -19,7 +19,9 @@ import { getCategoryDB } from '../redux/modules/product';
 const Cookie = () => {
   const dispatch = useDispatch();
   const cookie = 'cookie';
-  const productCookie = useSelector((state) => state.product.list);
+  const productCookie = useSelector((state) =>
+    state.product.list ? state.product.list : undefined
+  );
   console.log(productCookie);
 
   React.useEffect(() => {
@@ -47,7 +49,8 @@ const Cookie = () => {
       </Grid>
 
       <Grid
-        margin="0 0 0 5%"
+        width="1320px"
+        margin="auto"
         addstyle={() => {
           return css`
             display: flex;

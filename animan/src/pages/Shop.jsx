@@ -19,7 +19,9 @@ import { getCategoryDB } from '../redux/modules/product';
 const Shop = () => {
   const dispatch = useDispatch();
   const all = 'all';
-  const productList = useSelector((state) => state.product.list);
+  const productList = useSelector((state) =>
+    state.product.list ? state.product.list : undefined
+  );
   console.log(productList);
 
   React.useEffect(() => {
@@ -56,7 +58,7 @@ const Shop = () => {
           `;
         }}
       >
-        {productList.length ? (
+        {productList ? (
           productList.map((product, idx) => {
             return <ProductCard key={idx} {...product} />;
           })
