@@ -5,21 +5,21 @@ import { history } from '../redux/configureStore';
 //ELEMENTS
 import { Image, Grid, Text } from '../elements/index';
 
-function ProductCard({product}) {
+function ProductCard(props) {
   return (
-    <Grid 
-      width="370px" 
+    <Grid
+      width="370px"
       margin="30px"
       // clickEvent={() => {
       //   history.push(`/pdetail/${product.productId}`);
       // }}
-      >
-      <Image src="https://cdn.imweb.me/thumbnail/20210726/af4b97e2e38d4.png" />
+    >
+      <Image src={props.productImage} />
       <Text color="black" fontWeight="bold" style={{ textAlign: 'center' }}>
-        title
+        {props.title}
       </Text>
       <Text color="black" fontWeight="bold" style={{ textAlign: 'center' }}>
-        price
+        가격: {props.price}
       </Text>
     </Grid>
   );

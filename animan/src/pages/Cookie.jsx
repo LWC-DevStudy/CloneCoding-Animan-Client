@@ -7,7 +7,7 @@ import { css } from 'styled-components';
 import { flexBox } from '../shared/style';
 
 // ELEMENTS
-import { Grid } from '../elements';
+import { Grid } from '../elements/index';
 
 // COMPONENTS
 import CategoryAll from '../components/CategoryAll';
@@ -16,14 +16,14 @@ import ProductCard from '../components/ProductCard';
 // REDUX
 import { getCategoryDB } from '../redux/modules/product';
 
-const Shop = () => {
+const Cookie = () => {
   const dispatch = useDispatch();
-  const all = 'all';
-  const productList = useSelector((state) => state.product.list);
-  console.log(productList);
+  const cookie = 'cookie';
+  const productCookie = useSelector((state) => state.product.list);
+  console.log(productCookie);
 
   React.useEffect(() => {
-    dispatch(getCategoryDB(all));
+    dispatch(getCategoryDB(cookie));
   }, []);
 
   return (
@@ -56,18 +56,16 @@ const Shop = () => {
           `;
         }}
       >
-        {productList ? (
-          productList.map((product, idx) => {
+        {productCookie ? (
+          productCookie.map((product, idx) => {
             return <ProductCard key={idx} {...product} />;
           })
         ) : (
           <></>
         )}
-
-        {/* <ProductList /> */}
       </Grid>
     </Grid>
   );
 };
 
-export default Shop;
+export default Cookie;
