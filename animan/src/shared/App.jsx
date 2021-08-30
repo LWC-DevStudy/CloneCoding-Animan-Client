@@ -57,6 +57,7 @@ function App(props) {
       <Route path="/rdetail/:reviewId" exact component={ReviewDetail} />
       <Route path="/write" exact component={ReviewWrite} />
       <Route path="/pdetail" exact component={ProductDetail} />
+      <Route path="/pdetail/:productId" exact component={ProductDetail} />
       <Route path="/reviewedit" exact component={ReviewEdit} />
       <Route
         path="/oauth/callback/kakao"
