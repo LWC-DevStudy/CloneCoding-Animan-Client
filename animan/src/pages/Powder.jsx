@@ -3,27 +3,25 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { css } from 'styled-components';
 
-// STYLE
-import { flexBox } from '../shared/style';
-
 // ELEMENTS
-import { Grid } from '../elements';
+import { Grid } from '../elements/index';
 
-// COMPONENTS
-import CategoryAll from '../components/CategoryAll';
+// COMPONENT
 import ProductCard from '../components/ProductCard';
+import CategoryAll from '../components/CategoryAll';
 
 // REDUX
 import { getCategoryDB } from '../redux/modules/product';
+import { flexBox } from '../shared/style';
 
-const Shop = () => {
+const Powder = () => {
   const dispatch = useDispatch();
-  const all = 'all';
-  const productList = useSelector((state) => state.product.list);
-  console.log(productList);
+  const powder = 'powder';
+  const productPowder = useSelector((state) => state.product.list);
+  console.log(productPowder);
 
   React.useEffect(() => {
-    dispatch(getCategoryDB(all));
+    dispatch(getCategoryDB(powder));
   }, []);
 
   return (
@@ -47,27 +45,22 @@ const Shop = () => {
       </Grid>
 
       <Grid
-        margin="0 0 0 5%"
         addstyle={() => {
           return css`
-            display: flex;
-            flex-wrap: wrap;
-            cursor: pointer;
+            ${flexBox()}
           `;
         }}
       >
-        {productList ? (
-          productList.map((product, idx) => {
+        {productPowder ? (
+          productPowder.map((product, idx) => {
             return <ProductCard key={idx} {...product} />;
           })
         ) : (
           <></>
         )}
-
-        {/* <ProductList /> */}
       </Grid>
     </Grid>
   );
 };
 
-export default Shop;
+export default Powder;

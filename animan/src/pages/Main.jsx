@@ -13,18 +13,18 @@ import { flexBox } from '../shared/style';
 import { Grid, Text } from '../elements/index';
 
 // COMPONENTS
-import ProductList from '../components/ProductList';
+import ProductCard from '../components/ProductCard';
 
 // REDUX
 import { getCategoryDB } from '../redux/modules/product';
 
 const Main = () => {
   const dispatch = useDispatch();
-  const product_list = useSelector((state) => state);
-  console.log(product_list);
+  const all = 'all';
+  const productList = useSelector((state) => state.product.list);
 
   React.useEffect(() => {
-    dispatch(getCategoryDB());
+    dispatch(getCategoryDB(all));
   }, []);
 
   return (
@@ -129,11 +129,23 @@ const Main = () => {
         </Text>
       </Grid>
 
-      <Grid margin="0 0 10% 0">
-        {/* {product_list.map((p, idx) => {
-          return <ProductList key={idx} {...p} />;
-        })} */}
-        <ProductList />
+      <Grid
+        margin="0 0 0 5%"
+        addstyle={() => {
+          return css`
+            display: flex;
+            flex-wrap: wrap;
+            cursor: pointer;
+          `;
+        }}
+      >
+        {productList ? (
+          productList.map((product, idx) => {
+            return <ProductCard key={idx} {...product} />;
+          })
+        ) : (
+          <></>
+        )}
       </Grid>
     </Grid>
   );
