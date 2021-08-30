@@ -37,11 +37,20 @@ const ReviewDetail = (review) => {
 
   return (
     <Grid width="550px" height="auto" margin="3% auto" border="solid 1px black">
-      <Link to="/reviewedit">
-        <Button color="white" bgColor="buttonColor" padding="8px" margin="2%">
-          수정
-        </Button>
-      </Link>
+      <Button
+        color="white"
+        bgColor="buttonColor"
+        padding="8px"
+        margin="2%"
+        clickEvent={() => {
+          history.push({
+            pathname: `/reviewedit/${reviewId.reviewId}`,
+            state: { reviewId: reviewId.reviewId },
+          });
+        }}
+      >
+        수정
+      </Button>
       <Button
         color="white"
         bgColor="buttonColor"

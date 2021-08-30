@@ -1,6 +1,7 @@
 // LIBRARY
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router';
 // STYLE
 import styled from 'styled-components';
 // ELEMENTS
@@ -11,7 +12,9 @@ import { imgActions } from '../redux/modules/image';
 
 const ReviewEdit = () => {
   const dispatch = useDispatch();
-
+  const location = useLocation();
+  const reviewId = location.state.reviewId;
+  console.log(reviewId);
   const [review, setReview] = React.useState();
 
   const $contents = (e) => {
@@ -19,7 +22,7 @@ const ReviewEdit = () => {
   };
 
   const editBtn = () => {
-    dispatch(editReviewDB(review));
+    dispatch(editReviewDB(reviewId, review));
   };
 
   // s3
@@ -42,7 +45,7 @@ const ReviewEdit = () => {
           style={{ display: 'none' }}
         />
         <Textarea onChange={$contents} />
-        <WriteButton onClick={editBtn}>작성하기</WriteButton>
+        <WriteButton onClick={editBtn}>수정하기</WriteButton>
       </Grid>
     </React.Fragment>
   );
