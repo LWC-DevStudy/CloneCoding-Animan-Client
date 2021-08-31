@@ -6,20 +6,19 @@ import { createSlice } from '@reduxjs/toolkit';
 export const addCartDB = (product, productId, count, totalPrice) => {
   return function (dispatch, getState, { history }) {
     const productImg = getState().product.list.productImage;
-    const productPrice = getState().product.list.price;
     const productTitle = getState().product.list.title;
     const _productId = getState().product.list.productId;
     const productWished = false;
     const cartInfo = {
-      cartPrice: totalPrice, 
-      cartQuantity: count, 
-      cartImage: productImg, 
-      cartId: _productId, 
+      cartPrice: totalPrice,
+      cartQuantity: count,
+      cartImage: productImg,
+      cartId: _productId,
       cartWished: productWished,
       cartTitle: productTitle,
     };
     instance
-      .post(`/cart/${productId}`, {cartInfo})
+      .post(`/cart/${productId}`, { cartInfo })
       .then((res) => {
         console.log(res);
         dispatch(addCart(cartInfo));
@@ -65,44 +64,58 @@ export const deleteCartDB = (productId) => {
 const initialState = {
   carts: [],
   price: 0,
-  last_price : 0,
-}
+  last_price: 0,
+};
 
 // REDUX
 const cart = createSlice({
-    name: "cart",
-    initialState,
-    reducers: {
-        addCart: (state, action) => {
-            const userName = action.payload.userName
-            const cartPrice = action.payload.cartPrice;
-            const cartQuantity = action.payload.cartQuantity;
-            const cartImage = action.payload.cartImage;
-            const cartId = action.payload.cartId;
-            const cartWished = action.payload.cartWished;
-            state.carts.push(userName, cartPrice, cartQuantity, cartImage, cartId, cartWished);
-        },
-        getCart: (state, action) => {
-            state.carts = action.payload;
-        },
-        totalPrice: (state, action) => {
-            state.price = action.payload
-        },
-        changeItem: (state, action) => {
-            let idx = state.carts.findIndex((c) => c.productId === action.payload.productId)
-            state.carts[idx].count = action.payload.value
-            state.carts[idx].countPrice = action.payload.extraPrice
-        },
-        deleteCart: (state, action) => {
-            let idx = state.carts.findIndex((d) => d.productId === action.payload.productId)
-            if (idx !== -1) {
-                state.carts.splice(idx, 1);
-                state.carts.length === 0 ? window.location.replace('/') : window.alert('삭제 완료!')
-            }
-        }
-    }
+  name: 'cart',
+  initialState,
+  reducers: {
+    addCart: (state, action) => {
+      const userName = action.payload.userName;
+      const cartPrice = action.payload.cartPrice;
+      const cartQuantity = action.payload.cartQuantity;
+      const cartImage = action.payload.cartImage;
+      const cartId = action.payload.cartId;
+      const cartWished = action.payload.cartWished;
+      state.carts.push(
+        userName,
+        cartPrice,
+        cartQuantity,
+        cartImage,
+        cartId,
+        cartWished,
+      );
+    },
+    getCart: (state, action) => {
+      state.carts = action.payload;
+    },
+    totalPrice: (state, action) => {
+      state.price = action.payload;
+    },
+    changeItem: (state, action) => {
+      let idx = state.carts.findIndex(
+        (c) => c.productId === action.payload.productId,
+      );
+      state.carts[idx].count = action.payload.value;
+      state.carts[idx].countPrice = action.payload.extraPrice;
+    },
+    deleteCart: (state, action) => {
+      let idx = state.carts.findIndex(
+        (d) => d.productId === action.payload.productId,
+      );
+      if (idx !== -1) {
+        state.carts.splice(idx, 1);
+        state.carts.length === 0
+          ? window.location.replace('/')
+          : window.alert('삭제 완료!');
+      }
+    },
+  },
 });
 
-export const { addCart, getCart, totalPrice, changeItem, deleteCart } = cart.actions;
+export const { addCart, getCart, totalPrice, changeItem, deleteCart } =
+  cart.actions;
 
 export default cart;
