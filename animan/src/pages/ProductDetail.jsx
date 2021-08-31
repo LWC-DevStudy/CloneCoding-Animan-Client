@@ -14,9 +14,11 @@ import { getOneProductDB } from '../redux/modules/product';
 import { addCartDB } from '../redux/modules/cart';
 
 const ProductDetail = (product) => {
-  const productList = useSelector((state) => state.product.list);
+  const productList = useSelector((state) => state.product.list ? state.product.list : 1);
   const dispatch = useDispatch();
   const productId = product.match.params;
+  console.log(productList)
+
 
   const [count, setCount] = React.useState(0);
   const plusCount = () => {
@@ -26,6 +28,11 @@ const ProductDetail = (product) => {
     if (count > 0) {
       setCount(count - 1);
     }
+  };
+  let totalPrice = productList.price * count;
+
+  const addBtn = () => {
+    dispatch(addCartDB(product, productId.productId, count, totalPrice));
   };
 
   React.useEffect(() => {
@@ -159,7 +166,7 @@ const ProductDetail = (product) => {
               <Button
                 margin="4px"
                 width="173px"
-                clickEvent={addCartDB(productList.price * count, count)}
+                clickEvent={() => addBtn(productList.price * count, count)}
                 addstyle={() => {
                   return css`
                     border: 1px solid lightgray;

@@ -3,26 +3,26 @@ import instance from '../../shared/axios';
 import { createSlice } from '@reduxjs/toolkit';
 
 // 장바구니에 넣기
-export const addCartDB = (productId) => {
+export const addCartDB = (product, productId, count, totalPrice) => {
   return function (dispatch, getState, { history }) {
-    const userName = getState().user.username;
-    const productImg = getState().product.productImage;
-    // const productPrice = getState().product.price;
-    // const productQuantity = getState().product.cartQuantity;
-    const _productId = getState().product.productId;
-    const productWished = getState().product.isWished;
+    const productImg = getState().product.list.productImage;
+    const productPrice = getState().product.list.price;
+    const productTitle = getState().product.list.title;
+    const _productId = getState().product.list.productId;
+    const productWished = false;
     const cartInfo = {
-      userName: userName,
-      // cartPrice: productPrice, 
-      // cartQuantity: productQuantity, 
+      cartPrice: totalPrice, 
+      cartQuantity: count, 
       cartImage: productImg, 
       cartId: _productId, 
       cartWished: productWished,
-    }
+      cartTitle: productTitle,
+    };
     instance
       .post(`/cart/${productId}`, {cartInfo})
       .then((res) => {
-        dispatch(addCart());
+        console.log(res);
+        dispatch(addCart(cartInfo));
         window.alert('선택하신 상품을 장바구니에 담았습니다.');
       })
       .catch((err) => {
@@ -74,12 +74,13 @@ const cart = createSlice({
     initialState,
     reducers: {
         addCart: (state, action) => {
+            const userName = action.payload.userName
             const cartPrice = action.payload.cartPrice;
             const cartQuantity = action.payload.cartQuantity;
             const cartImage = action.payload.cartImage;
             const cartId = action.payload.cartId;
             const cartWished = action.payload.cartWished;
-            state.carts.push(cartPrice, cartQuantity, cartImage, cartId, cartWished);
+            state.carts.push(userName, cartPrice, cartQuantity, cartImage, cartId, cartWished);
         },
         getCart: (state, action) => {
             state.carts = action.payload;
