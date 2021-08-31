@@ -1,8 +1,9 @@
+// LIBRARY
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useDispatch } from 'react-redux';
 
-// ELEMENT
+// ELEMENTS
 import { Button, Grid } from '../elements/index.jsx';
 import { flexBox } from '../shared/style.jsx';
 
@@ -37,9 +38,6 @@ function CommentList({ comment }) {
           `;
         }}
       >
-        {/* <Button margin="4px" color="white" bgColor="buttonColor" padding="6px">
-          수정
-        </Button> */}
         <Button
           clickEvent={deleteBtn}
           margin="4px 12px 4px 4px"

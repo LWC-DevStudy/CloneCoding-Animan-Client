@@ -2,13 +2,17 @@
 import React, { useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 // STYLE
 import { css } from 'styled-components';
+
 // ELEMENTS
 import { Grid, Button } from '../elements/index';
 import { flexHoz } from '../shared/style';
+
 // COMPONENTS
 import ReviewCard from '../components/ReviewCard';
+
 // FUNCTION
 import InfinityScroll from '../shared/InfinityScroll';
 import { getMoreReviewDB, getReviewDB } from '../redux/modules/review';
@@ -22,7 +26,7 @@ const Review = () => {
       reviewList: state.review.list,
       reviewId: state.review,
     }),
-    shallowEqual
+    shallowEqual,
   );
   const getMoreReview = () => {
     dispatch(getMoreReviewDB());

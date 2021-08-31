@@ -2,10 +2,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
+
 // STYLE
 import styled from 'styled-components';
+
 // ELEMENTS
 import { Grid } from '../elements/index';
+
 // REDUX
 import { editReviewDB } from '../redux/modules/review';
 import { imgActions } from '../redux/modules/image';

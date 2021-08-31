@@ -1,7 +1,8 @@
-//LIBRARY
+// LIBRARY
 import { createSlice } from '@reduxjs/toolkit';
 import instance from '../../shared/axios';
-//REDUX
+
+// REDUX
 import { imgActions } from './image';
 
 // 리뷰 등록
@@ -27,7 +28,7 @@ export const addReviewDB = (post) => {
             .catch((err) => {
               console.log(err);
             });
-        })
+        }),
       );
     }
     return;
@@ -58,9 +59,7 @@ export const getReviewDB = (limit = 10) => {
 
 export const getMoreReviewDB = (limit = 11) => {
   return function (dispatch, getState, { history }) {
-    // 콘솔
     let start = getState().review.start;
-    console.log(start);
 
     if (start === null) {
       return;
@@ -123,7 +122,7 @@ export const editReviewDB = (reviewId, reviewContents) => {
             .catch((err) => {
               console.error(err);
             });
-        })
+        }),
       );
     }
     return;

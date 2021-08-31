@@ -1,10 +1,13 @@
 // LIBRARY
 import React from 'react';
 import { useDispatch } from 'react-redux';
+
 // STYLE
 import styled from 'styled-components';
+
 // ELEMENTS
 import { Grid } from '../elements/index';
+
 // REDUX
 import { addReviewDB } from '../redux/modules/review';
 import { imgActions } from '../redux/modules/image';

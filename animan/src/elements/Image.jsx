@@ -1,7 +1,7 @@
-//LIBRARY
+// LIBRARY
 import React from 'react';
 
-//STYLE
+// STYLE
 import styled from 'styled-components';
 
 const Image = ({ shape, src, size, ...props }) => {

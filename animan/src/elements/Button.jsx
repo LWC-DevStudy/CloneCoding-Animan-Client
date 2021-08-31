@@ -1,8 +1,8 @@
-//LIBRARY
+// LIBRARY
 import React from 'react';
 import styled from 'styled-components';
 
-//STYLE
+// STYLE
 import { borderBox } from '../shared/style';
 
 const Button = ({ children, clickEvent, ...props }) => {

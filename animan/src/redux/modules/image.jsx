@@ -1,3 +1,4 @@
+// AWS S3
 import AWS from 'aws-sdk';
 
 AWS.config.update({
