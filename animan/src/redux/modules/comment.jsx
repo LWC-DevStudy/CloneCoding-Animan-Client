@@ -35,9 +35,24 @@ export const getCommentDB = (reviewId) => {
   };
 };
 
+// 댓글 삭제
+export const deleteCommentDB = (commentId) => {
+  return function (dispatch, getState, { history }) {
+    instance
+      .delete(`/comment/${commentId}`)
+      .then((res) => {
+        dispatch(deleteComment(commentId));
+        window.location.reload();
+        window.alert('댓글을 삭제했습니다.');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
+
 const initialState = {
   list: [],
-  // comment: [],
 };
 
 const comment = createSlice({
@@ -52,9 +67,16 @@ const comment = createSlice({
     getComment: (state, action) => {
       state.list = action.payload;
     },
+
+    deleteComment: (state, action) => {
+      const deleteList = state.list.filter(
+        (comment) => comment.commentId !== action.commentId,
+      );
+      state.list = deleteList;
+    },
   },
 });
 
-export const { addComment, getComment } = comment.actions;
+export const { addComment, getComment, deleteComment } = comment.actions;
 
 export default comment;

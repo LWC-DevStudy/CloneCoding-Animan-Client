@@ -13,12 +13,12 @@ import CommentList from './CommentList';
 const Comment = (props) => {
   const dispatch = useDispatch();
   const reviewId = props.reviewId.reviewId;
-  const [comments, setComment] = React.useState();
+  const [comments, setComment] = React.useState('');
   const commentList = useSelector((state) => state.comment.list);
 
   React.useEffect(() => {
     dispatch(getCommentDB(reviewId));
-  }, [reviewId, commentList.length]);
+  }, [commentList.length]);
 
   const $comment = (event) => {
     setComment(event.target.value);
