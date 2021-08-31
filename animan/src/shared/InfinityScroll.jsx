@@ -1,3 +1,4 @@
+// LIBRARY
 import React, { useEffect, useState } from 'react';
 
 const InfinityScroll = ({ length, children, root, next, index }) => {

@@ -1,4 +1,4 @@
-// IMPORT
+// LIBRARY
 import { createSlice } from '@reduxjs/toolkit';
 import instance from '../../shared/axios';
 

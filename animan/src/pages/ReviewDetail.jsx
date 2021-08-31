@@ -3,6 +3,7 @@ import React from 'react';
 import { css } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../redux/configureStore';
+
 // STYLE
 import { flexBox } from '../shared/style';
 
@@ -14,9 +15,6 @@ import Comment from '../components/Comment';
 
 // REDUX
 import { getOneReviewDB, deleteReviewDB } from '../redux/modules/review';
-
-// ROUTE
-import { Link } from 'react-router-dom';
 
 const ReviewDetail = (review) => {
   const dispatch = useDispatch();
@@ -63,18 +61,6 @@ const ReviewDetail = (review) => {
       <Grid>
         <Image src={reviewImage} />
       </Grid>
-
-      <Grid
-        addstyle={() => {
-          return css`
-            ${flexBox()}
-          `;
-        }}
-      >
-        <Text>userID</Text>
-      </Grid>
-
-      <hr />
 
       <Grid
         addstyle={() => {
