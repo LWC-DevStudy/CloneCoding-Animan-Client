@@ -3,7 +3,7 @@ import instance from '../../shared/axios';
 import { createSlice } from '@reduxjs/toolkit';
 
 // 장바구니에 넣기
-export const addCartDB = (product, productId, count, totalPrice) => {
+export const addCartDB = (product, productId, count, totalPrice, content) => {
   return function (dispatch, getState, { history }) {
     const productImg = getState().product.list.productImage;
     const productTitle = getState().product.list.title;
@@ -16,6 +16,7 @@ export const addCartDB = (product, productId, count, totalPrice) => {
       cartId: _productId,
       cartWished: productWished,
       cartTitle: productTitle,
+      cartPost: content,
     };
     instance
       .post(`/cart/${productId}`, { cartInfo })
