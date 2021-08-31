@@ -22,6 +22,7 @@ function CommentList({ comment }) {
       addstyle={() => {
         return css`
           ${flexBox()}
+          border-top: 2px solid #dee2e6;
         `;
       }}
     >
