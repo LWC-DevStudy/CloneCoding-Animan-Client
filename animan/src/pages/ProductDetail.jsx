@@ -19,6 +19,15 @@ const ProductDetail = (product) => {
   const productId = product.match.params;
   console.log(productList)
 
+  const [content, setContent] = React.useState('택배');
+  const onChangeHandler=(e)=> {
+    setContent(e.currentTarget.value);
+  }
+
+  const Options = [
+    {key: 1, value:'택배'},
+    {key: 2, value:'방문수령'},
+  ]
 
   const [count, setCount] = React.useState(0);
   const plusCount = () => {
@@ -32,7 +41,7 @@ const ProductDetail = (product) => {
   let totalPrice = productList.price * count;
 
   const addBtn = () => {
-    dispatch(addCartDB(product, productId.productId, count, totalPrice));
+    dispatch(addCartDB(product, productId.productId, count, totalPrice, content));
   };
 
   React.useEffect(() => {
@@ -75,9 +84,10 @@ const ProductDetail = (product) => {
             배송비 3,000원 (50,000원 이상 무료배송) | 도서산간 배송비 추가
           </Text>
           <Text>배송 안내 제주/산간 지역 3000원 추가</Text>
-          <select name="post">
-            <option value="택배">택배</option>
-            <option value="방문수령">방문수령</option>
+          <select onChange={onChangeHandler} value={content}>
+            {Options.map((item, index)=>(
+              <option key={item.key} value={item.value}>{item.value}</option>
+            ))}
           </select>
           <Grid
             width="440px"
