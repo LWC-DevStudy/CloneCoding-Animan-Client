@@ -62,23 +62,93 @@ all, cookie, powder로 분류된 제품을 불러오는 작업을 해야 되는�
 **정진우**
 
 ### 장바구니 기능
+
 - 장바구니 기능을 구현할 때 컴포넌트를 나누지 않아서 props를 받아오는 것에 어려움이 있었는데, <br>
   Cart 컴포넌트에서 CartCard라는 컴포넌트를 분리시켜서 만들었고, 문제가 잘 해결되었다. <br>
   프로젝트 구조를 짤 때 기능 구현까지 깊게 생각해보면서 짜야겠다는 생각이 들었다.
 
 ### 로그인 체크 기능<br>
+
 ![스크린샷 2021-09-02 오후 5 21 19](https://user-images.githubusercontent.com/66675699/131810105-94660512-f0c3-4f26-8e71-af9d4032f116.png)
+
 - 저번 프로젝트에서 리렌더링될 때 유저 정보가 사라지는 현상이 있었는데 로그인 체크 기능을 만들어서 해결했다.
 
-### 에러 
+### 에러
+
 - 전에 봤었던 에러들을 이번 프로젝트에서도 봤었는데 바로 해결하지 못해서 아쉬웠다. <br>
   에러를 해결하면 잊어버리지 않도록 꼭 기록해야겠다는 생각이 들었다.
-  
+
 <hr>
 
 **우종혁**
 
-### 여기서부터 제목 정하고 작성하기
+## CRUD에 집중한 프로젝트
+
+- 이번 프로젝트에서는 정말 CRUD에 집중했습니다.<br>
+  이미지를 포함한 게시글을 등록,조회,수정,삭제를 구현했는데 이미지가 들어가서<br>
+  다른 건 문제 없었지만 수정을 하는데 어려움을 겪었습니다!<br>
+  하지만 이번 프로젝트에서 포기하지 않고 수정을 구현해서 너무 뿌듯했습니다!
+
+## ErrorNote😱
+
+### 리듀서를 잘못 사용했습니다.
+
+```javascript
+//리덕스 툴킷을 사용하지 않을 땐 reducer를 빼야한다.
+// 수정 전
+const rootReducer = combineReducers({
+  user: user.reducer,
+  cart: cart.reducer,
+  comment: comment.reducer,
+  image: image.reducer,
+  product: product.reducer,
+  review: review.reducer,
+  wish: wish.reducer,
+  router: connectRouter(history),
+});
+
+---------------------------------------
+// 수정 후
+const rootReducer = combineReducers({
+  user: user.reducer,
+  cart: cart.reducer,
+  comment: comment.reducer,
+  image: image,
+  product: product.reducer,
+  review: review.reducer,
+  wish: wish.reducer,
+  router: connectRouter(history),
+});
+
+```
+
+### 이미지를 때에 따라 못 받아 오는 문제
+
+```javascript
+//------------------------수정 전-----------------------------------
+const { reviewImage, reviewContent } = useSelector((state) => ({
+  reviewImage: state.review.list.reviewImage,
+  reviewContent: state.review.list.reviewContents,
+}));
+
+React.useEffect(() => {
+  dispatch(getOneReviewDB(reviewId));
+}, []);
+//--------------이미지를 때에 따라 못 받아 오는 문제-----------------------
+//----------------------------------------------------------------
+//------------------------수정 후----------------------------------
+const { reviewImage, reviewContent } = useSelector((state) => ({
+  reviewImage: state.review.list.reviewImage,
+  reviewContent: state.review.list.reviewContents,
+}));
+
+React.useEffect(() => {
+  dispatch(getOneReviewDB(reviewId));
+}, [reviewImage]);
+
+// useEffect에서 reviewImage가 바뀔 때 리렌더링이 되게끔 해서 조치했다.
+// 처음에 reviewImage를 못받아서 기본값으로만 사진이 출력되었었따.
+```
 
 <hr>
 <br>
