@@ -14,22 +14,20 @@ import { getOneProductDB } from '../redux/modules/product';
 import { addCartDB } from '../redux/modules/cart';
 
 const ProductDetail = (product) => {
-  const productList = useSelector((state) =>
-    state.product.list ? state.product.list : 1,
-  );
+  const productList = useSelector((state) => state.product.list ? state.product.list : 1);
   const dispatch = useDispatch();
   const productId = product.match.params;
-  console.log(productList);
+  console.log(productList)
 
   const [content, setContent] = React.useState('택배');
-  const onChangeHandler = (e) => {
+  const onChangeHandler=(e)=> {
     setContent(e.currentTarget.value);
-  };
+  }
 
   const Options = [
-    { key: 1, value: '택배' },
-    { key: 2, value: '방문수령' },
-  ];
+    {key: 1, value:'택배'},
+    {key: 2, value:'방문수령'},
+  ]
 
   const [count, setCount] = React.useState(0);
   const plusCount = () => {
@@ -43,9 +41,7 @@ const ProductDetail = (product) => {
   let totalPrice = productList.price * count;
 
   const addBtn = () => {
-    dispatch(
-      addCartDB(product, productId.productId, count, totalPrice, content),
-    );
+    dispatch(addCartDB(count, totalPrice, content));
   };
 
   React.useEffect(() => {
@@ -57,8 +53,7 @@ const ProductDetail = (product) => {
   }
   return (
     <Grid
-      width="900px"
-      margin="3% auto"
+      margin="0 25vw 300px"
       addstyle={() => {
         return css`
           @media screen and (max-width: 1200px) {
@@ -81,7 +76,7 @@ const ProductDetail = (product) => {
             src={productList.productImage}
           />
         </Grid>
-        <Grid margin="-3% 0 0 0" width="370px">
+        <Grid width="370px">
           <Text>{productList.title}</Text>
           <Text>{productList.price}원</Text>
           <Text>제조사 애니먼협력사</Text>
@@ -90,10 +85,8 @@ const ProductDetail = (product) => {
           </Text>
           <Text>배송 안내 제주/산간 지역 3000원 추가</Text>
           <select onChange={onChangeHandler} value={content}>
-            {Options.map((item, index) => (
-              <option key={item.key} value={item.value}>
-                {item.value}
-              </option>
+            {Options.map((item, index)=>(
+              <option key={item.key} value={item.value}>{item.value}</option>
             ))}
           </select>
           <Grid
@@ -159,41 +152,40 @@ const ProductDetail = (product) => {
               addstyle={() => {
                 return css`
                   display: flex;
-                  flex-direction: column;
                   justify-content: space-between;
                 `;
               }}
             >
-              <Text margin="0">총 상품금액({count}개)</Text>
-              <Text margin="4% 0">{productList.price * count}원</Text>
-              <Grid>
-                <Button
-                  color="white"
-                  width="160px"
-                  bgColor="buttonColor"
-                  addstyle={() => {
-                    return css`
-                      border-radius: 0;
-                      border: 1px solid lightgray;
-                    `;
-                  }}
-                >
-                  구매하기
-                </Button>
-                <Button
-                  width="160px"
-                  margin="0 0 0 3%"
-                  clickEvent={() => addBtn(productList.price * count, count)}
-                  addstyle={() => {
-                    return css`
-                      border: 1px solid lightgray;
-                      border-radius: 0;
-                    `;
-                  }}
-                >
-                  장바구니
-                </Button>
-              </Grid>
+              <Text>총 상품금액({count}개)</Text>
+              <Text>{productList.price * count}원</Text>
+            </Grid>
+            <Grid>
+              <Button
+                color="white"
+                margin="4px"
+                width="173px"
+                bgColor="buttonColor"
+                addstyle={() => {
+                  return css`
+                    border-radius: 0;
+                  `;
+                }}
+              >
+                구매하기
+              </Button>
+              <Button
+                margin="4px"
+                width="173px"
+                clickEvent={() => addBtn(productList.price * count, count)}
+                addstyle={() => {
+                  return css`
+                    border: 1px solid lightgray;
+                    border-radius: 0;
+                  `;
+                }}
+              >
+                장바구니
+              </Button>
             </Grid>
           </Grid>
         </Grid>

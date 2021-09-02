@@ -4,20 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { css } from 'styled-components';
 
 //ELEMENTS
-import { Image, Grid, Button, Input } from '../elements/index';
+import { Grid, Button, Input } from '../elements/index';
 
 // REDUX
-import { getCartDB, deleteCart } from '../redux/modules/cart';
+import { getCartDB } from '../redux/modules/cart';
 
-const Cart = () => {
+// COMPONENTS
+import CartCard from '../components/CartCard';
+
+const Cart = (cart) => {
   const dispatch = useDispatch();
   const cartList = useSelector((state) => (state.cart.carts));
-  console.log(cartList);
-
-
-  const delBtn = () => {
-    dispatch(deleteCart());
-  };
+  
   React.useEffect(() => {
       dispatch(getCartDB());
   }, []);
@@ -78,48 +76,7 @@ const Cart = () => {
         </thead>
         <tbody style={{ fontSize: '12px' }}>
           {cartList.map((cart, idx) => (
-            <tr>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Input type="checkbox"></Input>
-            </td>
-            <td style={{ display: 'flex', borderBottom: '1px solid #ddd' }}>
-              <Image
-                style={{ padding: '0', width: '100px', height: '100px' }}
-                src={cart.cartImage}
-              />
-              <div style={{ margin: '30px' }}>{cart.cartId}</div>
-            </td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>{cart.cartWished}하트</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>{cart.cartQuantity}</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>택배</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>3000원</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>{cart.cartPrice}</td>
-            <td style={{ borderBottom: '1px solid #ddd' }}>
-              <Button
-                margin="4px"
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                주문
-              </Button>
-              <Button
-                width="50px"
-                addstyle={() => {
-                  return css`
-                    border: 1px solid lightgray;
-                    border-radius: 40px;
-                  `;
-                }}
-              >
-                삭제
-              </Button>
-            </td>
-          </tr>
+            <CartCard key={idx} cart={cart}/>
           ))}
 
 
