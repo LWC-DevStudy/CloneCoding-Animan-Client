@@ -18,7 +18,8 @@ function Header() {
   return (
     <HeaderStyle>
       <Grid
-        widt="100%"
+        width="100%"
+        padding="10px"
         addstyle={() => {
           return css`
             ${flexBox('inline-flex')}
@@ -26,8 +27,8 @@ function Header() {
         }}
       >
         <Grid
+          margin="0 0 0 -2%"
           width="100%"
-          padding="0px"
           addstyle={() => {
             return css`
               ${flexBox('flex-start')}
@@ -51,8 +52,7 @@ function Header() {
           </Link>
         </Grid>
         <Grid
-          width="75%"
-          padding="0 25%"
+          margin="0 0 0 4%"
           addstyle={() => {
             return css`
               ${flexHoz('center')}
@@ -64,8 +64,8 @@ function Header() {
           </Link>
         </Grid>
         <Grid
+          margin="0 2% 0 0"
           width="100%"
-          padding="0"
           addstyle={() => {
             return css`
               ${flexHoz('flex-end')}
@@ -79,7 +79,7 @@ function Header() {
           </Link>
           <Link style={{ textDecoration: 'none' }} to="/review">
             <Text color="gray" size="19px">
-              review
+              Review
             </Text>
           </Link>
         </Grid>

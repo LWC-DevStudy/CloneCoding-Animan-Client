@@ -18,7 +18,7 @@ const Powder = () => {
   const dispatch = useDispatch();
   const powder = 'powder';
   const productPowder = useSelector((state) =>
-    state.product.list ? state.product.list : Array(0, 2, 34)
+    state.product.list ? state.product.list : Array(0, 2, 34),
   );
   console.log(productPowder);
 
@@ -47,9 +47,11 @@ const Powder = () => {
       </Grid>
 
       <Grid
+        margin="0 0 0 5%"
         addstyle={() => {
           return css`
-            ${flexBox()};
+            display: flex;
+            flex-wrap: wrap;
             cursor: pointer;
           `;
         }}

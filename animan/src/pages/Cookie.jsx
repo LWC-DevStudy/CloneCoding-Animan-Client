@@ -20,7 +20,7 @@ const Cookie = () => {
   const dispatch = useDispatch();
   const cookie = 'cookie';
   const productCookie = useSelector((state) =>
-    state.product.list ? state.product.list : Array(0, 2, 34)
+    state.product.list ? state.product.list : Array(0, 2, 34),
   );
   console.log(productCookie);
 
@@ -49,8 +49,7 @@ const Cookie = () => {
       </Grid>
 
       <Grid
-        width="1320px"
-        margin="auto"
+        margin="0 0 0 5%"
         addstyle={() => {
           return css`
             display: flex;
