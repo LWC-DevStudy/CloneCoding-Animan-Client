@@ -17,7 +17,6 @@ const ProductDetail = (product) => {
   const productList = useSelector((state) => state.product.list ? state.product.list : 1);
   const dispatch = useDispatch();
   const productId = product.match.params;
-  console.log(productList)
 
   const [content, setContent] = React.useState('택배');
   const onChangeHandler=(e)=> {

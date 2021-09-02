@@ -20,7 +20,6 @@ const Powder = () => {
   const productPowder = useSelector((state) =>
     state.product.list ? state.product.list : Array(0, 2, 34),
   );
-  console.log(productPowder);
 
   React.useEffect(() => {
     dispatch(getCategoryDB(powder));
