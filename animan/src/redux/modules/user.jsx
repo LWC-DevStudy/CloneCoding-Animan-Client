@@ -54,7 +54,6 @@ export const logInCheck = () => {
         dispatch(logCheck(res.data.username));
       })
       .catch((err) => {
-        window.alert('로그인 체크 실패!');
         console.log(err);
       });
   };
@@ -115,5 +114,5 @@ const user = createSlice({
   },
 });
 
-export const { SetUser, LogOut, logCheck } = user.actions;
+export const { SetUser, logOut, logCheck } = user.actions;
 export default user;
