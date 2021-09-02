@@ -41,7 +41,7 @@ const ProductDetail = (product) => {
   let totalPrice = productList.price * count;
 
   const addBtn = () => {
-    dispatch(addCartDB(product, productId.productId, count, totalPrice, content));
+    dispatch(addCartDB(count, totalPrice, content));
   };
 
   React.useEffect(() => {

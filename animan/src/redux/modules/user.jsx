@@ -65,7 +65,7 @@ export const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'GET',
-      url: `http://localhost:3000/oauth/callback/kakao?code=${code}`,
+      url: `http://52.78.241.50/oauth/callback/kakao?code=${code}`,
     })
       .then((res) => {
         console.log(res); // 토큰이 넘어올 것임

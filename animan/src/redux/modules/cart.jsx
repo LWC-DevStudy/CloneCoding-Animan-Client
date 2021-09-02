@@ -3,23 +3,22 @@ import instance from '../../shared/axios';
 import { createSlice } from '@reduxjs/toolkit';
 
 // 장바구니에 넣기
-export const addCartDB = (product, productId, count, totalPrice, content) => {
+export const addCartDB = (count, totalPrice) => {
   return function (dispatch, getState, { history }) {
+    const username = getState().user.user_info;
     const productImg = getState().product.list.productImage;
     const productTitle = getState().product.list.title;
     const _productId = getState().product.list.productId;
-    const productWished = false;
     const cartInfo = {
-      cartPrice: totalPrice,
-      cartQuantity: count,
-      cartImage: productImg,
-      cartId: _productId,
-      cartWished: productWished,
-      cartTitle: productTitle,
-      cartPost: content,
+      price: totalPrice,
+      quantity: count,
+      productImage: productImg,
+      productId: _productId,
+      title: productTitle,
+      username: username,
     };
     instance
-      .post(`/cart/${productId}`, { cartInfo })
+      .post(`/cart/${_productId}`,cartInfo)
       .then((res) => {
         console.log(res);
         dispatch(addCart(cartInfo));
@@ -37,6 +36,7 @@ export const getCartDB = () => {
     instance
       .get('/cart')
       .then((res) => {
+        console.log(res);
         dispatch(getCart(res.data));
       })
       .catch((err) => {
@@ -46,14 +46,14 @@ export const getCartDB = () => {
 };
 
 // 장바구니에서 제거
-export const deleteCartDB = (productId) => {
+export const deleteCartDB = (cartId) => {
   return function (dispatch, getState, { history }) {
     instance
-      .delete(`/cart/${productId}`)
+      .delete(`/cart/${cartId}`)
       .then((res) => {
-        dispatch(deleteCart(productId));
+        dispatch(deleteCart(cartId));
         window.alert('선택하신 상품을 장바구니에서 제거했습니다.');
-        history.push('/cart');
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -74,19 +74,19 @@ const cart = createSlice({
   initialState,
   reducers: {
     addCart: (state, action) => {
-      const userName = action.payload.userName;
-      const cartPrice = action.payload.cartPrice;
-      const cartQuantity = action.payload.cartQuantity;
-      const cartImage = action.payload.cartImage;
-      const cartId = action.payload.cartId;
-      const cartWished = action.payload.cartWished;
+      const price = action.payload.price;
+      const quantity = action.payload.quantity;
+      const productImage = action.payload.productImage;
+      const productId = action.payload.productId;
+      const title = action.payload.title;
+      const username = action.payload.username;
       state.carts.push(
-        userName,
-        cartPrice,
-        cartQuantity,
-        cartImage,
-        cartId,
-        cartWished,
+        price,
+        quantity,
+        productImage,
+        productId,
+        title,
+        username,
       );
     },
     getCart: (state, action) => {
