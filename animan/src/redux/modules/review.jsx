@@ -42,7 +42,6 @@ export const getReviewDB = (limit = 10) => {
       .get(`/review?page=0&size=${limit}`)
       .then((res) => {
         let reviewList = res.data;
-        console.log(reviewList);
         if (reviewList.length < limit + 1) {
           dispatch(getReview(reviewList, null));
           return;

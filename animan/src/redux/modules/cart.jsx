@@ -40,7 +40,6 @@ export const getCartDB = () => {
     instance
       .get('/cart')
       .then((res) => {
-        console.log(res);
         dispatch(getCart(res.data));
       })
       .catch((err) => {
