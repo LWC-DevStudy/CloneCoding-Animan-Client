@@ -26,6 +26,7 @@ const Comment = (props) => {
 
   const addCommentBtn = () => {
     dispatch(addCommentDB(comments, reviewId));
+    window.location.reload();
   };
 
   return (
