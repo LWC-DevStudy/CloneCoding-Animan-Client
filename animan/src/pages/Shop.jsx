@@ -22,7 +22,6 @@ const Shop = () => {
   const productList = useSelector((state) =>
     state.product.list ? state.product.list : Array(0, 2, 34)
   );
-  console.log(productList);
 
   React.useEffect(() => {
     dispatch(getCategoryDB(all));
