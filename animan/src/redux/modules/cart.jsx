@@ -21,8 +21,12 @@ export const addCartDB = (count, totalPrice) => {
       .post(`/cart/${_productId}`,cartInfo)
       .then((res) => {
         console.log(res);
-        dispatch(addCart(cartInfo));
-        window.alert('선택하신 상품을 장바구니에 담았습니다.');
+        if (username) {
+          dispatch(addCart(cartInfo));
+          window.alert('선택하신 상품을 장바구니에 담았습니다.');
+        } else {
+          window.alert('장바구니 기능은 로그인 후에 사용하실 수 있습니다.');
+        }
       })
       .catch((err) => {
         console.error(err);
